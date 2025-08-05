@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Parks in Sherman Oaks, CA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .parks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .park-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .park-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .park-header {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 25px;
+            position: relative;
+        }
+
+        .park-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #4CAF50, #45a049, #66BB6A);
+        }
+
+        .park-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .park-neighborhood {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .park-content {
+            padding: 25px;
+        }
+
+        .park-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .park-address {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .address-link {
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .address-link:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            position: relative;
+            cursor: help;
+        }
+
+        .amenity.available {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+        }
+
+        .amenity.limited {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+        }
+
+        .amenity.unavailable {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            opacity: 0.6;
+        }
+
+        .emoji {
+            font-size: 1.2rem;
+        }
+
+        .hours-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .special-features {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .special-features h4 {
+            color: #e65100;
+            margin-bottom: 8px;
+        }
+
+        .website-link {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .website-link:hover {
+            background: #45a049;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(0,0,0,0.9);
+        }
+
+        .amenity:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .adjacent-neighborhoods {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .parks-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .amenities {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .park-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .park-header {
+                padding: 20px;
+            }
+            
+            .amenities {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐕 Dog Parks in Sherman Oaks</h1>
+            <p>Your guide to the best off-leash adventures in Sherman Oaks, California</p>
+        </div>
+
+        <div class="parks-grid">
+            <!-- Library Square Dog Park -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Library Square Dog Park</div>
+                    <div class="park-neighborhood">Sherman Oaks</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Van Nuys, Studio City, Encino</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Official haven for dog lovers seeking quality time with their furry companions, offering a secure area for playful activities.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=14238+Moorpark+St,+Sherman+Oaks,+CA+91423" target="_blank" class="address-link">📍 14238 Moorpark St, Sherman Oaks, CA 91423</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Dawn to dusk
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🚗</span>
+                            <span>Street Parking</span>
+                            <div class="tooltip">Street parking available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Water</span>
+                            <div class="tooltip">Water available for dogs</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Seating</span>
+                            <div class="tooltip">Benches available</div>
+                        </div>
+                        <div class="amenity limited">
+                            <span class="emoji">🌳</span>
+                            <span>Limited Shade</span>
+                            <div class="tooltip">Limited natural shade</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🐕</span>
+                            <span>Off-Leash</span>
+                            <div class="tooltip">Off-leash area available</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Dedicated dog-friendly space for socializing and exercise</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laurel Canyon Dog Park -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Laurel Canyon Dog Park</div>
+                    <div class="park-neighborhood">Laurel Canyon (near Sherman Oaks)</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Hollywood Hills, Studio City, Sherman Oaks</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Large fenced-in park features separate sections for small and large dogs, benches, a pergola and picnic tables.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=8260+Mulholland+Dr,+Los+Angeles,+CA+90046" target="_blank" class="address-link">📍 8260 Mulholland Dr, Los Angeles, CA 90046</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Dawn to dusk (closed Fridays 6:00 AM - 11:00 AM for maintenance)
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🅿️</span>
+                            <span>35-Car Lot</span>
+                            <div class="tooltip">35-car capacity parking lot</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Water</span>
+                            <div class="tooltip">Water fountains available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Seating</span>
+                            <div class="tooltip">Shaded benches and picnic areas</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🌳</span>
+                            <span>Pergola & Shade</span>
+                            <div class="tooltip">Pergola and lots of shaded benches</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🚻</span>
+                            <span>Restrooms</span>
+                            <div class="tooltip">Restroom facilities available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🐕</span>
+                            <span>Off-Leash</span>
+                            <div class="tooltip">Off-leash area available</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Separate sections for small and large dogs, separate area for small or shy dogs</p>
+                    </div>
+                    <a href="https://laparks.org" class="website-link" target="_blank">Visit Website</a>
+                </div>
+            </div>
+
+            <!-- Van Nuys Sherman Oaks Recreation Center -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Van Nuys Sherman Oaks Recreation Center</div>
+                    <div class="park-neighborhood">Sherman Oaks/Van Nuys border</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Van Nuys, Sherman Oaks, Valley Glen</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Multi-purpose recreation center with dog-friendly areas and comprehensive sports facilities.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=14201+Huston+St,+Sherman+Oaks,+CA+91423" target="_blank" class="address-link">📍 14201 Huston St, Sherman Oaks, CA 91423</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Varies by facility; call (818) 783-5121
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🅿️</span>
+                            <span>On-Site Parking</span>
+                            <div class="tooltip">On-site parking available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Water</span>
+                            <div class="tooltip">Water available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Seating</span>
+                            <div class="tooltip">Benches and seating areas</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🏠</span>
+                            <span>Covered Areas</span>
+                            <div class="tooltip">Some covered areas available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🚻</span>
+                            <span>Restrooms</span>
+                            <div class="tooltip">Restroom facilities available</div>
+                        </div>
+                        <div class="amenity limited">
+                            <span class="emoji">🐕</span>
+                            <span>Check Policy</span>
+                            <div class="tooltip">Check with facility for dog area policies</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Multiple sports facilities, children's play area, indoor and outdoor basketball courts</p>
+                    </div>
+                    <a href="https://laparks.org/reccenter/vnso" class="website-link" target="_blank">Visit Website</a>
+                </div>
+            </div>
+
+            <!-- Sepulveda Basin Off-Leash Dog Park -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Sepulveda Basin Off-Leash Dog Park</div>
+                    <div class="park-neighborhood">Van Nuys/Encino border</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Sherman Oaks, Encino, Reseda</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Popular off-leash dog park in the Sepulveda Basin Recreation Area with ample space for dogs to run and play.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=Sepulveda+Basin,+Van+Nuys,+CA" target="_blank" class="address-link">📍 Sepulveda Basin, Van Nuys, CA (near Sherman Oaks)</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Dawn to dusk
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🅿️</span>
+                            <span>Large Lot</span>
+                            <div class="tooltip">Large parking lot available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Dog Fountains</span>
+                            <div class="tooltip">Dog water fountains available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Benches</span>
+                            <div class="tooltip">Benches throughout the area</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🌳</span>
+                            <span>Tree Coverage</span>
+                            <div class="tooltip">Some tree coverage for shade</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🚻</span>
+                            <span>Restrooms</span>
+                            <div class="tooltip">Available in recreation area</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🐕</span>
+                            <span>Off-Leash</span>
+                            <div class="tooltip">Off-leash area available</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Large open space, separate areas for different sized dogs</p>
+                    </div>
+                    <a href="https://laparks.org" class="website-link" target="_blank">Visit Website</a>
+                </div>
+            </div>
+
+            <!-- Valley Village Park -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Valley Village Park</div>
+                    <div class="park-neighborhood">Valley Village (adjacent to Sherman Oaks)</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Sherman Oaks, Studio City, North Hollywood</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Neighborhood park with dog area in a family-friendly setting perfect for local dog owners.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=Colfax+Ave+%26+Bellingham+Ave,+Valley+Village,+CA" target="_blank" class="address-link">📍 Colfax Ave & Bellingham Ave, Valley Village, CA</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Dawn to dusk
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🚗</span>
+                            <span>Street Parking</span>
+                            <div class="tooltip">Street parking available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Water</span>
+                            <div class="tooltip">Water available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Park Benches</span>
+                            <div class="tooltip">Park benches available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🌳</span>
+                            <span>Tree Coverage</span>
+                            <div class="tooltip">Natural tree coverage for shade</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🚻</span>
+                            <span>Restrooms</span>
+                            <div class="tooltip">Restroom facilities available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🐕</span>
+                            <span>Off-Leash Area</span>
+                            <div class="tooltip">Designated off-leash area</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Family-friendly neighborhood park setting</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Whitnall Off-Leash Dog Park -->
+            <div class="park-card">
+                <div class="park-header">
+                    <div class="park-name">Whitnall Off-Leash Dog Park</div>
+                    <div class="park-neighborhood">North Hollywood</div>
+                    <div class="adjacent-neighborhoods">Adjacent: Sherman Oaks, Studio City, Valley Village</div>
+                </div>
+                <div class="park-content">
+                    <div class="park-description">
+                        Dedicated off-leash dog area serving Sherman Oaks residents with well-maintained facilities.
+                    </div>
+                    <div class="park-address">
+                        <a href="https://maps.google.com/?q=Whitnall+Dog+Park,+North+Hollywood,+CA" target="_blank" class="address-link">📍 North Hollywood area (serving Sherman Oaks residents)</a>
+                    </div>
+                    <div class="hours-info">
+                        <strong>🕐 Hours:</strong> Dawn to dusk
+                    </div>
+                    <div class="amenities">
+                        <div class="amenity available">
+                            <span class="emoji">🅿️</span>
+                            <span>Parking</span>
+                            <div class="tooltip">Parking available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">💧</span>
+                            <span>Dog Fountains</span>
+                            <div class="tooltip">Dog water fountains available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🪑</span>
+                            <span>Benches</span>
+                            <div class="tooltip">Benches available</div>
+                        </div>
+                        <div class="amenity limited">
+                            <span class="emoji">🌳</span>
+                            <span>Partial Shade</span>
+                            <div class="tooltip">Partial shade available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🚻</span>
+                            <span>Restrooms</span>
+                            <div class="tooltip">Restroom facilities available</div>
+                        </div>
+                        <div class="amenity available">
+                            <span class="emoji">🐕</span>
+                            <span>Off-Leash</span>
+                            <div class="tooltip">Off-leash area available</div>
+                        </div>
+                    </div>
+                    <div class="special-features">
+                        <h4>✨ Special Features</h4>
+                        <p>Well-maintained fenced area</p>
+                    </div>
+                    <a href="https://laparks.org" class="website-link" target="_blank">Visit Website</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: white; font-size: 0.9rem; opacity: 0.8; margin-top: 40px;">
+            <p>💡 <strong>Tip:</strong> For the most current hours and amenities, call LA Parks & Recreation at (888) 527-2757 or visit laparks.org</p>
+        </div>
+    </div>
+</body>
+</html>
