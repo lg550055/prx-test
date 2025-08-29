@@ -16,6 +16,7 @@
   }
   header {
     padding: 0;
+    color: purple;
   }
   .nav {
     position: fixed;
@@ -29,10 +30,11 @@
   .nav a {
     margin-left: 20px;
     text-decoration: none;
-    color: purple;
+    /* color: purple; */
   }
   .logo {
-    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 0.3em;
   }
   
   .hero {

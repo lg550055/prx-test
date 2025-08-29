@@ -37,22 +37,23 @@ body {
 .parks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    gap: 20px;
     margin-bottom: 40px;
 }
 
 .park-card {
     background: white;
+    border: 1px solid white;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
     position: relative;
 }
 
 .park-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    /* box-shadow: 0 20px 40px rgba(0,0,0,0.3); */
 }
 
 .park-header {
