@@ -11,19 +11,17 @@ body {
     color: #333;
 }
 
-.header {
+.hero {
     text-align: center;
     padding: 4vh 0;
     color: white;
 }
-
-.header h1 {
+.hero h1 {
     font-size: 3rem;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-
-.header p {
+.hero p {
     font-size: 1.2rem;
     opacity: 0.9;
 }
@@ -39,7 +37,6 @@ body {
     gap: 20px;
     padding: 20px;
 }
-
 .park-card {
     background: white;
     border: 1px solid white;
@@ -47,50 +44,33 @@ body {
     overflow: hidden;
     position: relative;
 }
-
 .park-card:hover {
     transform: translateY(-10px);
 }
-
 .park-header {
     background: linear-gradient(45deg, #4CAF50, #45a049);
     color: white;
     padding: 25px;
     position: relative;
 }
-
-.park-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: linear-gradient(90deg, #4CAF50, #45a049, #66BB6A);
-}
-
 .park-name {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 8px;
 }
-
 .park-neighborhood {
     font-size: 0.9rem;
     opacity: 0.9;
 }
-
 .park-content {
     padding: 25px;
 }
-
 .park-description {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 20px;
     color: #555;
 }
-
 .park-address {
     background: #f8f9fa;
     padding: 15px;
@@ -107,7 +87,6 @@ body {
     transition: color 0.3s ease;
     cursor: pointer;
 }
-
 .address-link:hover {
     color: #4CAF50;
     text-decoration: underline;
@@ -119,7 +98,6 @@ body {
     gap: 15px;
     margin-bottom: 20px;
 }
-
 .amenity {
     display: flex;
     align-items: center;
@@ -131,17 +109,14 @@ body {
     position: relative;
     cursor: help;
 }
-
 .amenity.available {
     background: #e8f5e8;
     border: 1px solid #4CAF50;
 }
-
 .amenity.limited {
     background: #fff3cd;
     border: 1px solid #ffc107;
 }
-
 .amenity.unavailable {
     background: #f8d7da;
     border: 1px solid #dc3545;
@@ -166,7 +141,6 @@ body {
     border-radius: 10px;
     border-left: 4px solid #ff9800;
 }
-
 .special-features h4 {
     color: #e65100;
     margin-bottom: 8px;
@@ -183,7 +157,6 @@ body {
     margin-top: 15px;
     transition: background 0.3s ease;
 }
-
 .website-link:hover {
     background: #45a049;
 }
@@ -205,16 +178,6 @@ body {
     z-index: 1000;
 }
 
-.tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: rgba(0,0,0,0.9);
-}
-
 .amenity:hover .tooltip {
     opacity: 1;
     visibility: visible;
@@ -224,32 +187,4 @@ body {
     font-size: 0.85rem;
     color: #666;
     margin-top: 8px;
-}
-
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
-    }
-    .parks-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .amenities {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .park-content {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    .park-header {
-        padding: 20px;
-    }
-    .amenities {
-        grid-template-columns: 1fr;
-    }
 }
