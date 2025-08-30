@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -11,9 +10,14 @@ body {
     color: #333;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
 .hero {
     text-align: center;
-    padding: 4vh 0;
+    padding: 10vh 1vh 6vh;
     color: white;
 }
 .hero h1 {
@@ -24,11 +28,6 @@ body {
 .hero p {
     font-size: 1.2rem;
     opacity: 0.9;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .parks-grid {
