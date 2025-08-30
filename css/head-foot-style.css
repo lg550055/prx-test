@@ -21,3 +21,15 @@ nav a {
     align-items: center;
     padding: 5px;
 }
+
+footer {
+    background-color: #f0f0f0;
+    padding: 2vh;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  footer a {
+    color: #764ba2;
+    margin: 0 10px;
+  }
+  

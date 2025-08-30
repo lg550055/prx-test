@@ -1,4 +1,4 @@
-const tempString = `
+const headerStr = `
     <header>
         <a href="/" class="logo">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="map-pin">
@@ -8,7 +8,7 @@ const tempString = `
         <nav>
             <a href="#categories">Categories</a>
             <a href="#how-it-works">How It Works</a>
-            <a href="#contact">Contact</a>
+            <a href="#cities">Cities</a>
         </nav>
     </header>    
 `;
@@ -16,7 +16,7 @@ const tempString = `
 function loadTemplate() {
     const template = document.createElement('template');
     try {
-        template.innerHTML = tempString;
+        template.innerHTML = headerStr;
     } catch (err) {
         console.error("Error loading template: ", err);
         return null;
