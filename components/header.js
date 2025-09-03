@@ -6,9 +6,8 @@ const headerStr = `
         </svg>
         </a>
         <nav>
-            <a href="#categories">Categories</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#cities">Cities</a>
+            <a href="/#categories">Categories</a>
+            <a href="/#cities">Cities</a>
         </nav>
     </header>    
 `;

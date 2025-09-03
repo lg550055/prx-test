@@ -65,27 +65,38 @@ h2 {
   transform: translateY(-5px);
 }
 
-.how-it-works {
-  background: #f0f0f0;
-  padding: 60px 20px;
-}
-.how-it-works ol {
-  max-width: 600px;
-  margin: auto;
-}
-.how-it-works li {
-  margin: 15px 0;
-  font-size: 1.1rem;
-}
-
 .cta {
+  background-color: #f0f0f0;
   text-align: center;
   padding: 60px 20px;
 }
 .cta .btn {
+  border: 2px solid gold;
   margin-top: 20px;
   display: inline-block;
   padding: 12px 30px;
   border-radius: 5px;
   text-decoration: none;
+}
+
+.cities {
+  color: #764ba2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.cities a {
+  color: #667eea;
+  display: block;
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+.cities h4 {
+  color: #f0f0f0;
+  background-color: #764ba2;
+  border-radius: 5px;
+  padding: 1vh;
 }
