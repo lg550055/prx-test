@@ -1,35 +1,38 @@
+@import url('vars.css');
+
 header {
     position: fixed;
     display: flex;
     width: 100%;
-    padding: 0.5rem 2%;
+    padding: 0.3rem 2%;
     justify-content: space-between;
-    background: rgba(240,240,240,0.75);
+    background: rgba(240,240,240,0.85);
     align-items: center;
     z-index: 9;
 }
 nav a {
-    color: #764ba2;
+    color: var(--color1, #764ba2);
+    font-size: 0.9rem;
     margin-left: 10px;
     text-decoration: none;
 }
 .logo {
-    background-color: #764ba2;
-    border-radius: 8px;
-    color: #fff;
+    background-color: var(--color1, #764ba2);
+    border-radius: var(--bor-rad, 8px);
+    color: var(--white-color, #fff);
     display: flex;
     align-items: center;
     padding: 5px;
 }
 
 footer {
-    background-color: #f0f0f0;
+    background-color: var(--off-white, #f0f0f0);
     padding: 2vh;
     text-align: center;
     font-size: 0.9rem;
   }
   footer a {
-    color: #764ba2;
-    margin: 0 10px;
+    color: var(--off-black);
+    margin: 10px;
   }
   

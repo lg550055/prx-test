@@ -1,3 +1,5 @@
+@import url('vars.css');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +8,9 @@
 }
 
 body {
+  color: var(--color1, #764ba2);
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
-  color: #111;
 }
 .container {
   width: 90%;
@@ -20,15 +22,20 @@ h1 {
   margin-bottom: 2vh;
 }
 h2 {
-  color: #764ba2;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2vh;
 }
+a {
+  text-decoration: none;
+}
+a:hover {
+  font-weight: bold;
+}
 
 .hero {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
+  background: linear-gradient(135deg, #667eea, var(--color1, #764ba2));
+  color: var(--white-color, #fff);
   text-align: center;
   padding: 15vh 7vw;
 }
@@ -38,7 +45,7 @@ h2 {
   width: 80%;
   max-width: 500px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--bor-rad, 8px);
   font-size: 1rem;
 }
 
@@ -47,17 +54,17 @@ h2 {
 }
 .cards {
   display: flex;
-  gap: 20px;
+  gap: var(--grid-gap, 20px);
   flex-wrap: wrap;
   /* justify-content: center; */
 }
 .card {
-  background: #fff;
+  background: var(--white-color, #fff);
   padding: 30px;
   width: 320px;
   text-decoration: none;
-  color: #000;
-  border-radius: 10px;
+  color: var(--off-black, #111);
+  border-radius: var(--bor-rad, 8px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
 }
@@ -66,37 +73,36 @@ h2 {
 }
 
 .cta {
-  background-color: #f0f0f0;
-  text-align: center;
+  background-color: var(--off-white, #f0f0f0);
   padding: 60px 20px;
+  text-align: center;
 }
 .cta .btn {
-  border: 2px solid gold;
+  border: 1px solid gold;
   margin-top: 20px;
   display: inline-block;
   padding: 12px 30px;
-  border-radius: 5px;
+  border-radius: var(--bor-rad, 8px);
   text-decoration: none;
 }
 
 .cities {
-  color: #764ba2;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: var(--grid-gap, 20px);
   padding: 20px;
 }
 
 .cities a {
-  color: #667eea;
+  color: var(--color1);
   display: block;
-  margin-top: 5px;
-  text-decoration: none;
+  padding-top: 10px;
 }
 
 .cities h4 {
-  color: #f0f0f0;
-  background-color: #764ba2;
-  border-radius: 5px;
-  padding: 1vh;
+  background-color: var(--color2);
+  border-radius: var(--bor-rad, 8px);
+  color: var(--off-white);
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
 }
