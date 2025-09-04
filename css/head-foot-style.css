@@ -1,10 +1,10 @@
 header {
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     width: 100%;
-    padding: 0.35rem 2%;
+    padding: 0.3rem 2% 0.7rem;
     justify-content: space-between;
-    background: rgba(240,240,240,0.85);
+    background: var(--hf-bkg-color, rgba(50,50,50,0.9));
     align-items: center;
     z-index: 9;
 }
@@ -18,25 +18,26 @@ nav a {
     text-decoration: none;
 }
 .logo {
-    background-color: var(--color1, #764ba2);
+    background-color: var(--bkup-color, #764ba2);
     border-radius: var(--bor-rad, 8px);
-    color: var(--white-color, #fff);
+    color: var(--off-white, #fff);
     display: flex;
     align-items: center;
     padding: 5px;
 }
 
 footer {
-    background-color: var(--off-white, #f0f0f0);
-    padding: 2rem 1rem 1rem;
+    background: radial-gradient(var(--hf-bkg-color), var(--off-black));
+    color: var(--off-white, #f0f0f0);
+    padding: 2rem 1rem 0.5rem;
     text-align: center;
     font-size: 0.9rem;
   }
   footer a {
-    color: var(--off-black);
+    color: var(--color2, #667eea);
     margin: 1rem;
   }
   footer p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   

@@ -1,9 +1,11 @@
 :root {
     --color1: #00aa00;
     --color2: #667eea;
+    --bkup-color: #764ba2;
     --off-white: #f0f0f0;
     --off-black: #222;
     --white-color: #fff;
+    --hf-bkg-color: rgba(50,50,50,0.9);
     --grid-gap: 15px;
     --bor-rad: 9px;
 }
