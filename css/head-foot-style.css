@@ -2,16 +2,19 @@ header {
     position: fixed;
     display: flex;
     width: 100%;
-    padding: 0.3rem 2%;
+    padding: 0.35rem 2%;
     justify-content: space-between;
     background: rgba(240,240,240,0.85);
     align-items: center;
     z-index: 9;
 }
 nav a {
-    color: var(--color1, #764ba2);
+    background-color: var(--color2);
+    border-radius: var(--bor-rad, 8px);
+    color: var(--off-white);
     font-size: 0.9rem;
     margin-left: 10px;
+    padding: 4px 10px;
     text-decoration: none;
 }
 .logo {
