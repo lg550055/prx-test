@@ -8,9 +8,7 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
     color: #222;
-    --main-green: #4CAF50;
     --off-white: #f8f9fa;
-    --bor-rad: 10px;
 }
 a {
     text-decoration: none;
@@ -60,14 +58,13 @@ a {
     transform: translateY(-10px);
 }
 .park-header {
-    background: linear-gradient(45deg, var(--main-green, #4CAF50), #45a049);
+    background: linear-gradient(45deg, var(--color1, #4CAF50), #45a049);
     color: white;
     padding: 25px;
     position: relative;
 }
 .park-name {
     font-size: 1.5rem;
-    font-weight: bold;
     margin-bottom: 8px;
 }
 .park-content {
@@ -83,7 +80,7 @@ a {
     padding: 15px;
     border-radius: var(--bor-rad, 10px);
     margin-bottom: 20px;
-    border-left: 4px solid var(--main-green, #4CAF50);
+    border-left: 4px solid var(--color1, #4CAF50);
 }
 .address-link {
     color: #333;
@@ -92,7 +89,7 @@ a {
     cursor: pointer;
 }
 .address-link:hover {
-    color: var(--main-green, #4CAF50);
+    color: var(--color1, #4CAF50);
 }
 
 .hours-info {
@@ -121,7 +118,7 @@ a {
 }
 .amenity.available {
     background: #e8f5e8;
-    border: 1px solid var(--main-green, #4CAF50);
+    border: 1px solid var(--color1, #4CAF50);
 }
 .amenity.limited {
     background: #fff3cd;
@@ -146,7 +143,7 @@ a {
 
 .website-link {
     display: inline-block;
-    background: var(--main-green, #4CAF50);
+    background: var(--color1, #4CAF50);
     color: white;
     padding: 12px 20px;
     border-radius: var(--bor-rad, 10px);
