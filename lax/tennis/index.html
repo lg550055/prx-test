@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA Metro Public Tennis Courts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .search-filter {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .courts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .court-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .court-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #2196F3, #FF5722);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .court-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .court-card:hover::before {
+            opacity: 1;
+        }
+
+        .court-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .court-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(255,215,0,0.3);
+        }
+
+        .stars {
+            color: #f39c12;
+            font-size: 1.1rem;
+        }
+
+        .address {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .court-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .cost {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1rem;
+        }
+
+        .location-badge {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 50px 0;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .courts-grid { grid-template-columns: 1fr; }
+            .court-card { padding: 20px; }
+            .court-header { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎾 LA Metro Public Tennis Courts</h1>
+            <p>Discover the best public tennis courts in Los Angeles Metropolitan Area - sorted by reviews and ratings</p>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search courts by name, location, or features...">
+        </div>
+
+        <div class="courts-grid" id="courtsGrid">
+            <!-- Courts will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No courts match your search criteria. Try adjusting your search terms.
+        </div>
+    </div>
+
+    <script>
+        const tennisCourtData = [
+            {
+                name: "Santa Monica Tennis Center",
+                rating: 4.8,
+                address: "1800 Olympic Blvd, Santa Monica, CA 90404",
+                location: "Santa Monica",
+                features: ["Hard Courts", "Lessons Available", "Pro Shop", "Same Day Stringing"],
+                description: "Highly rated tennis center with professional instruction and equipment services. Known for excellent court conditions and comprehensive tennis programs.",
+                cost: "Varies by program",
+                category: "public"
+            },
+            {
+                name: "Beverly Hills Tennis (La Cienega Tennis Center)",
+                rating: 4.7,
+                address: "325 S La Cienega Blvd, Beverly Hills, CA 90211",
+                location: "Beverly Hills",
+                features: ["Hard Courts", "Country Club Feel", "USTA Outstanding Facility", "Public Access"],
+                description: "Named one of the nation's most outstanding public tennis facilities by USTA. Offers a private country club experience with public access.",
+                cost: "Court fees vary",
+                category: "public"
+            },
+            {
+                name: "Echo Park Tennis Courts",
+                rating: 4.6,
+                address: "1632 Bellevue Ave, Los Angeles, CA 90026",
+                location: "Echo Park",
+                features: ["Free Courts", "City Park", "Hard Surface", "Scenic Location"],
+                description: "Popular public courts in the heart of Echo Park with great city views. Well-maintained facilities in a vibrant neighborhood setting.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Pan Pacific Park Tennis Courts",
+                rating: 4.5,
+                address: "7600 Beverly Blvd, Los Angeles, CA 90036",
+                location: "Mid-City",
+                features: ["Free Courts", "6 Courts", "Lighted Courts", "Recreation Center"],
+                description: "Six well-maintained tennis courts with lighting for evening play. Part of a larger recreation complex with additional amenities.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Cheviot Hills Tennis Center",
+                rating: 4.4,
+                address: "2551 Motor Ave, Los Angeles, CA 90064",
+                location: "Cheviot Hills",
+                features: ["Multiple Courts", "Lessons Available", "Hard Courts", "Parking Available"],
+                description: "Well-established tennis facility offering court rentals and professional instruction in a convenient West LA location.",
+                cost: "Court rental fees",
+                category: "public"
+            },
+            {
+                name: "Westwood Recreation Center",
+                rating: 4.4,
+                address: "1350 Sepulveda Blvd, Los Angeles, CA 90025",
+                location: "Westwood",
+                features: ["Free Courts", "Recreation Center", "Multiple Courts", "Good Condition"],
+                description: "Quality public tennis courts as part of Westwood's recreation facilities. Popular with local residents and UCLA community.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Mar Vista Recreation Center",
+                rating: 4.3,
+                address: "11430 Woodbine St, Los Angeles, CA 90066",
+                location: "Mar Vista",
+                features: ["Free Courts", "4 Courts", "Community Center", "Youth Programs"],
+                description: "Four tennis courts in a family-friendly recreation center. Offers various community programs and maintains good court conditions.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Alta Vista Tennis & Racquetball Courts",
+                rating: 4.2,
+                address: "715 Julia Ave, Redondo Beach, CA 90277",
+                location: "Redondo Beach",
+                features: ["Tennis & Racquetball", "Multiple Courts", "Coastal Location", "Equipment Rental"],
+                description: "Combination tennis and racquetball facility near the coast. Offers both sports with equipment rental options available.",
+                cost: "Court fees apply",
+                category: "public"
+            },
+            {
+                name: "Plummer Park Tennis Courts",
+                rating: 4.2,
+                address: "7377 Santa Monica Blvd, West Hollywood, CA 90046",
+                location: "West Hollywood",
+                features: ["Free Courts", "2 Courts", "Historic Park", "Central Location"],
+                description: "Two tennis courts in the historic Plummer Park. Centrally located in West Hollywood with easy access to local amenities.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Poinsettia Recreation Center",
+                rating: 4.1,
+                address: "7341 Willoughby Ave, West Hollywood, CA 90046",
+                location: "West Hollywood",
+                features: ["Free Courts", "Recreation Center", "Safe Environment", "Well-Maintained"],
+                description: "Considered one of the best public tennis spots in West Hollywood. Known for accessible location and solid playing conditions.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "Studio City Recreation Center",
+                rating: 4.0,
+                address: "12621 Rye St, Studio City, CA 91604",
+                location: "Studio City",
+                features: ["Free Courts", "Valley Location", "Recreation Programs", "Parking Available"],
+                description: "Tennis courts serving the Studio City community with recreational programs and well-maintained facilities in the San Fernando Valley.",
+                cost: "Free",
+                category: "public"
+            },
+            {
+                name: "109th Street Recreation Center",
+                rating: 3.9,
+                address: "1464 E 109th St, Los Angeles, CA 90059",
+                location: "South LA",
+                features: ["Free Courts", "Community Center", "Youth Programs", "Multiple Sports"],
+                description: "Community tennis courts serving South Los Angeles with various recreational programs and sports facilities.",
+                cost: "Free",
+                category: "public"
+            }
+        ];
+
+        // Sort courts by rating (highest first)
+        tennisCourtData.sort((a, b) => b.rating - a.rating);
+
+        function createStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (hasHalfStar) stars += '☆';
+            
+            return stars;
+        }
+
+        function renderCourts(courts) {
+            const grid = document.getElementById('courtsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (courts.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = courts.map(court => `
+                <div class="court-card">
+                    <div class="court-header">
+                        <div>
+                            <h3 class="court-name">${court.name}</h3>
+                            <div class="address">📍 ${court.address}</div>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${createStars(court.rating)}</span>
+                            <span>${court.rating}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        ${court.features.map(feature => 
+                            `<span class="feature-tag">${feature}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="description">${court.description}</div>
+                    
+                    <div class="court-footer">
+                        <div class="cost">💰 ${court.cost}</div>
+                        <div class="location-badge">${court.location}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCourts(searchTerm) {
+            const filtered = tennisCourtData.filter(court => 
+                court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                court.description.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderCourts(filtered);
+        }
+
+        // Initialize
+        renderCourts(tennisCourtData);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterCourts(e.target.value);
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.court-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${0.8 + index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out both';
+            });
+        });
+    </script>
+</body>
+</html>
