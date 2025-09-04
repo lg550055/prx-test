@@ -27,12 +27,15 @@ nav a {
 
 footer {
     background-color: var(--off-white, #f0f0f0);
-    padding: 2vh;
+    padding: 2rem 1rem 1rem;
     text-align: center;
     font-size: 0.9rem;
   }
   footer a {
     color: var(--off-black);
-    margin: 10px;
+    margin: 1rem;
+  }
+  footer p {
+    margin-bottom: 0.5rem;
   }
   

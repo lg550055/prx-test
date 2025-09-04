@@ -7,14 +7,23 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
-    color: #333;
+    color: #222;
+    --main-green: #4CAF50;
+    --off-white: #f8f9fa;
+    --bor-rad: 10px;
 }
-
+a {
+    text-decoration: none;
+  }
+  a:hover {
+    font-weight: bold;
+  }
+  
 .container {
     max-width: 1200px;
     margin: 0 auto;
 }
-  
+
 .hero {
     text-align: center;
     padding: 10vh 1vh 6vh;
@@ -30,6 +39,10 @@ body {
     opacity: 0.9;
 }
 
+.emoji {
+    font-size: 1.2rem;
+}
+
 .parks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -39,7 +52,7 @@ body {
 .park-card {
     background: white;
     border: 1px solid white;
-    border-radius: 20px;
+    border-radius: var(--bor-rad, 10px);
     overflow: hidden;
     position: relative;
 }
@@ -47,7 +60,7 @@ body {
     transform: translateY(-10px);
 }
 .park-header {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
+    background: linear-gradient(45deg, var(--main-green, #4CAF50), #45a049);
     color: white;
     padding: 25px;
     position: relative;
@@ -57,10 +70,6 @@ body {
     font-weight: bold;
     margin-bottom: 8px;
 }
-.park-neighborhood {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
 .park-content {
     padding: 25px;
 }
@@ -68,27 +77,30 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 20px;
-    color: #555;
 }
 .park-address {
-    background: #f8f9fa;
+    background: var(--off-white, #f8f9fa);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: var(--bor-rad, 10px);
     margin-bottom: 20px;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--main-green, #4CAF50);
 }
-
 .address-link {
-    font-weight: 500;
     color: #333;
-    text-decoration: none;
     display: block;
     transition: color 0.3s ease;
     cursor: pointer;
 }
 .address-link:hover {
-    color: #4CAF50;
-    text-decoration: underline;
+    color: var(--main-green, #4CAF50);
+}
+
+.hours-info {
+    background: var(--off-white, #f8f9fa);
+    padding: 15px;
+    border-radius: var(--bor-rad, 10px);
+    margin-bottom: 15px;
+    border-left: 4px solid #2196F3;
 }
 
 .amenities {
@@ -102,15 +114,14 @@ body {
     align-items: center;
     gap: 8px;
     padding: 10px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    border-radius:var(--bor-rad, 10px);
     font-size: 0.9rem;
     position: relative;
     cursor: help;
 }
 .amenity.available {
     background: #e8f5e8;
-    border: 1px solid #4CAF50;
+    border: 1px solid var(--main-green, #4CAF50);
 }
 .amenity.limited {
     background: #fff3cd;
@@ -122,22 +133,10 @@ body {
     opacity: 0.6;
 }
 
-.emoji {
-    font-size: 1.2rem;
-}
-
-.hours-info {
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    border-left: 4px solid #2196F3;
-}
-
 .special-features {
     background: #fff3e0;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: var(--bor-rad, 10px);
     border-left: 4px solid #ff9800;
 }
 .special-features h4 {
@@ -147,11 +146,10 @@ body {
 
 .website-link {
     display: inline-block;
-    background: #4CAF50;
+    background: var(--main-green, #4CAF50);
     color: white;
     padding: 12px 20px;
-    border-radius: 25px;
-    text-decoration: none;
+    border-radius: var(--bor-rad, 10px);
     font-weight: 500;
     margin-top: 15px;
     transition: background 0.3s ease;
@@ -168,7 +166,7 @@ body {
     background: rgba(0,0,0,0.9);
     color: white;
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius:var(--bor-rad, 10px);
     font-size: 0.8rem;
     white-space: nowrap;
     opacity: 0;
