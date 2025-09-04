@@ -53,13 +53,13 @@ a:hover {
 }
 
 .categories {
-  padding: 60px 0;
+  padding: 6rem 0;
 }
 .cards {
   display: flex;
   gap: var(--grid-gap, 20px);
   flex-wrap: wrap;
-  /* justify-content: center; */
+  justify-content: center;
 }
 .card {
   background: var(--white-color, #fff);
@@ -78,7 +78,7 @@ a:hover {
 .cta {
   background: linear-gradient(135deg, var(--bkup-color), var(--off-black));
   color: var(--off-white);
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
   text-align: center;
 }
 
@@ -96,10 +96,7 @@ a:hover {
 }
 
 .cities h4 {
-  /* background-color: var(--bkup-color); */
   border-bottom: 3px solid var(--color1);
-  /* border-radius: var(--bor-rad, 8px); */
-  /* color: var(--off-white); */
   display: inline-block;
   padding: 0.3rem;
 }
