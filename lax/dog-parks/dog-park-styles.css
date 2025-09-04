@@ -7,32 +7,32 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
-    color: #222;
+    color: #333;
     --off-white: #f8f9fa;
 }
 a {
     text-decoration: none;
-  }
-  a:hover {
+}
+a:hover {
     font-weight: bold;
-  }
-  
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-.hero {
+.container {
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+}
+
+.title {
     text-align: center;
     padding: 10vh 1vh 6vh;
     color: white;
 }
-.hero h1 {
+.title h1 {
     font-size: 3rem;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-.hero p {
+.title p {
     font-size: 1.2rem;
     opacity: 0.9;
 }
