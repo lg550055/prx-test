@@ -6,7 +6,6 @@
 }
 
 body {
-  color: var(--color1, #764ba2);
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
 }
@@ -32,7 +31,7 @@ a:hover {
 }
 
 .hero {
-  background: linear-gradient(135deg, var(--bkup-color), var(--color1));
+  background: linear-gradient(135deg, var(--bkup-color), var(--color2));
   color: var(--white-color, #fff);
   text-align: center;
   padding: 15vh 7vw;
@@ -53,6 +52,7 @@ a:hover {
 }
 
 .categories {
+  color: var(--bkup-color);
   padding: 6rem 0;
 }
 .cards {
@@ -66,7 +66,7 @@ a:hover {
   padding: 30px;
   width: 320px;
   text-decoration: none;
-  color: var(--off-black, #111);
+  color: var(--off-black);
   border-radius: var(--bor-rad, 8px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
