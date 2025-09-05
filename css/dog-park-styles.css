@@ -24,11 +24,11 @@ a:hover {
 
 .title {
     text-align: center;
-    padding: 10vh 1vh 6vh;
+    padding: 12vh 1vh 8vh;
     color: white;
 }
 .title h1 {
-    font-size: 3rem;
+    font-size: 2.6rem;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
