@@ -42,14 +42,15 @@ function renderCourts(courts) {
             <div class="court-header">
                 <div>
                     <h3 class="court-name">${court.name}</h3>
-                    <div class="address">📍 ${court.address}</div>
                 </div>
                 <div class="rating">
                     <span class="stars">${createStars(court.rating)}</span>
                     <span>${court.rating}</span>
                 </div>
             </div>
-            
+            <div class="address">
+                📍 ${court.address}
+            </div>
             <div class="features">
                 ${court.features.map(feature => 
                     `<span class="feature-tag">${feature}</span>`
@@ -59,7 +60,7 @@ function renderCourts(courts) {
             <div class="description">${court.description}</div>
             
             <div class="court-footer">
-                <div class="cost">💰 ${court.cost}</div>
+                <div class="cost">💲${court.cost}</div>
                 <div class="location-badge">${court.location}</div>
             </div>
         </div>
