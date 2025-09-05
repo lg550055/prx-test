@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dallas best public basketball courts</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/tennis-styles.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../components/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🏀 Dallas Public Basketball Courts</h1>
+            <p>Find the best public basketball courts in Dallas - sorted by rating</p>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search courts by name, location, or features...">
+        </div>
+
+        <div class="courts-grid" id="courtsGrid">
+            <!-- Courts populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No courts match your search criteria. Try adjusting your search terms.
+        </div>
+    </div>
+    <!-- Inserts footer -->
+    <script src="../../components/footer.js"></script>
+
+    <script>
+        const courtData = [
+            {
+            "name": "Reverchon Park",
+            "rating": 4.6,
+            "address": "3505 Maple Ave, Dallas, TX 75219",
+            "location": "Oak Lawn",
+            "features": ["Multiple courts", "Recreation center", "Family‑friendly amenities"],
+            "description": "Large urban park with several well‑used basketball courts alongside playgrounds and sports fields—it’s one of Dallas’s most popular hoops spots.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Tietze Park",
+            "rating": 4.5,
+            "address": "2800–2898 Skillman St, Dallas, TX",
+            "location": "East Dallas",
+            "features": ["Multiple lighted courts", "Community events", "Evening games"],
+            "description": "A hub for local basketball, Tietze offers well‑lit courts that host casual and organized games, especially active in evenings.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Kidd Springs Park",
+            "rating": 4.4,
+            "address": "711 W Canty St, Dallas, TX",
+            "location": "East Dallas",
+            "features": ["Historic setting", "Well‑maintained court", "Neighborhood charm"],
+            "description": "A charming, historic park with a solid basketball court—great for laid‑back play in a classic Dallas neighborhood.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Carpenter Park (Downtown)",
+            "rating": 4.3,
+            "address": "Downtown Dallas, TX",
+            "location": "Downtown",
+            "features": ["First downtown outdoor court", "Public art", "Walking paths"],
+            "description": "Downtown’s first public outdoor basketball court set in a modern park with art, fountains, and playgrounds—great urban pick‑ups.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Willis C. Winters Park",
+            "rating": 4.4,
+            "address": "101 S Glasgow Dr, Dallas, TX 75214",
+            "location": "East Dallas",
+            "features": ["Wheelchair accessible", "Playground", "Barbecue area"],
+            "description": "Family‑friendly park with accessible basketball court, playground, picnic tables and grills—great for community jams.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Friendship Park",
+            "rating": 4.2,
+            "address": "12700 Hornbeam Dr, Dallas, TX 75243",
+            "location": "Far North Dallas",
+            "features": ["Wheelchair accessible", "Playground", "Pet friendly"],
+            "description": "Welcoming community park offering a basketball court along with picnic and playground areas—great for casual family play.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Fretz Park",
+            "rating": 4.1,
+            "address": "6994 Belt Line Rd, Dallas, TX 75254",
+            "location": "North Dallas",
+            "features": ["Playground", "Wheelchair accessible", "Restrooms"],
+            "description": "Neighborhood park with accessible basketball court, playgrounds, and restrooms—a convenient and inclusive spot to hoop.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Cole Park",
+            "rating": 4.3,
+            "address": "Elizabeth St, Dallas, TX 75204",
+            "location": "Uptown",
+            "features": ["Behind North Dallas HS", "Quiet atmosphere", "Community feel"],
+            "description": "Hidden gem just behind North Dallas High School—quiet, well‑accessible, and often praised by locals for casual pickup games.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Pike Park",
+            "rating": 4.2,
+            "address": "2807 Harry Hines Blvd, Dallas, TX 75201",
+            "location": "Downtown-adjacent",
+            "features": ["Lighted court", "Hard concrete surface", "Urban setting"],
+            "description": "Highly-rated downtown‑adjacent court with good lighting and surface—ideal for urban hoopers even after sunset.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Margaret Hunt Hill Bridge Plaza",
+            "rating": 4.0,
+            "address": "3062 N Beckley Ave, Dallas, TX 75212",
+            "location": "West End / Trinity Groves",
+            "features": ["Pick‑up games", "Lighted", "Scenic bridge views"],
+            "description": "Nestled near the iconic Margaret Hunt Hill Bridge, this lighted court hosts pick‑up games with one-of-a-kind skyline views.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "UT Dallas Outdoor Courts",
+            "rating": 4.3,
+            "address": "UT Dallas campus, Richardson, TX",
+            "location": "Richardson",
+            "features": ["Fenced courts", "Spacious", "Multi‑player games"],
+            "description": "Well‑maintained fenced outdoor courts popular with serious pickup games, especially active on weekends.",
+            "cost": "Free (public access outdoor)",
+            "category": "public"
+            },
+            {
+            "name": "Addison Recreation Center Court",
+            "rating": 4.2,
+            "address": "Addison, TX (near Beltway)", 
+            "location": "Addison",
+            "features": ["Outdoor courts", "Rec center adjacent", "Community use"],
+            "description": "Outdoor courts adjacent to Addison Rec Center—well-kept and favored by rec league players and casual pick‑ups.",
+            "cost": "Free or low‑fee",
+            "category": "public"
+            },
+            {
+            "name": "Duncanville Field House",
+            "rating": 4.4,
+            "address": "Duncanville, TX",
+            "location": "Southwest Dallas Area",
+            "features": ["Indoor competitive games", "Serious pickup scene"],
+            "description": "Known for competitive games and high-level pickup—frequented by ex‑college and semi‑pro players.",
+            "cost": "Low fee (rec center)",
+            "category": "public"
+            },
+            {
+            "name": "Lon L. Wynne Park (Garland)",
+            "rating": 4.0,
+            "address": "Garland, TX",
+            "location": "Garland (NE Metroplex)",
+            "features": ["Smooth slab", "Neighborhood court", "Quiet"],
+            "description": "Neighborhood court in Garland with relatively smooth surface—great for solo practice or small games.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Griggs Park",
+            "rating": 4.1,
+            "address": "Griggs Park area, Uptown Dallas",
+            "location": "Uptown",
+            "features": ["Hidden court", "Behind hill", "Local pick‑ups"],
+            "description": "A tucked‑away court behind Griggs Park hill—easy to miss, but locals say it’s perfect for low‑key runs.",
+            "cost": "Free",
+            "category": "public"
+            }
+        ];
+
+        // Sort courts by rating (highest first)
+        courtData.sort((a, b) => b.rating - a.rating);
+
+        function createStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (hasHalfStar) stars += '☆';
+            
+            return stars;
+        }
+
+        function renderCourts(courts) {
+            const grid = document.getElementById('courtsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (courts.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = courts.map(court => `
+                <div class="court-card">
+                    <div class="court-header">
+                        <div>
+                            <h3 class="court-name">${court.name}</h3>
+                            <div class="address">📍 ${court.address}</div>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${createStars(court.rating)}</span>
+                            <span>${court.rating}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        ${court.features.map(feature => 
+                            `<span class="feature-tag">${feature}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="description">${court.description}</div>
+                    
+                    <div class="court-footer">
+                        <div class="cost">💰 ${court.cost}</div>
+                        <div class="location-badge">${court.location}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCourts(searchTerm) {
+            const filtered = courtData.filter(court => 
+                court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                court.description.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderCourts(filtered);
+        }
+
+        // Initialize
+        renderCourts(courtData);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterCourts(e.target.value);
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.court-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${0.8 + index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out both';
+            });
+        });
+    </script>
+</body>
+</html>

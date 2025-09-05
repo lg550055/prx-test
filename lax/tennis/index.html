@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Angeles Public Tennis Courts</title>
+    <title>Los Angeles best public tennis courts</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../css/vars.css" />
-    <link rel="stylesheet" href="tennis-styles.css" />
+    <link rel="stylesheet" href="../../css/tennis-styles.css" />
     <link rel="stylesheet" href="../../css/head-foot-style.css" />
 </head>
 <body>
@@ -35,7 +35,7 @@
     <script src="../../components/footer.js"></script>
 
     <script>
-        const tennisCourtData = [
+        const courtData = [
             {
                 name: "Santa Monica Tennis Center",
                 rating: 4.8,
@@ -159,7 +159,7 @@
         ];
 
         // Sort courts by rating (highest first)
-        tennisCourtData.sort((a, b) => b.rating - a.rating);
+        courtData.sort((a, b) => b.rating - a.rating);
 
         function createStars(rating) {
             const fullStars = Math.floor(rating);
@@ -217,7 +217,7 @@
         }
 
         function filterCourts(searchTerm) {
-            const filtered = tennisCourtData.filter(court => 
+            const filtered = courtData.filter(court => 
                 court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -228,7 +228,7 @@
         }
 
         // Initialize
-        renderCourts(tennisCourtData);
+        renderCourts(courtData);
 
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', (e) => {

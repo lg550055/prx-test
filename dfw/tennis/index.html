@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dallas best public tennis courts</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/tennis-styles.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../components/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🎾 Dallas Public Tennis Courts</h1>
+            <p>Find the best public tennis courts in Dallas - sorted by rating</p>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search courts by name, location, or features...">
+        </div>
+
+        <div class="courts-grid" id="courtsGrid">
+            <!-- Courts will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No courts match your search criteria. Try adjusting your search terms.
+        </div>
+    </div>
+    <!-- Inserts footer -->
+    <script src="../../components/footer.js"></script>
+
+    <script>
+        const courtData = [
+            {
+            "name": "Cole Park Tennis Courts",
+            "rating": 4.5,
+            "address": "4000 McKinney Ave, Dallas, TX",
+            "location": "Uptown",
+            "features": ["6 hard courts", "Lights", "Free access"],
+            "description": "Popular Uptown location with multiple lighted courts—great for casual or evening play, though it can get busy.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Fretz Tennis Center",
+            "rating": 4.6,
+            "address": "6998 Belt Line Rd, Dallas, TX",
+            "location": "North Dallas",
+            "features": ["12 hard courts", "Lights", "Pro shop", "Lessons", "Booking required"],
+            "description": "Full‑service public facility with reservations, lessons, leagues, pro shop, and ball‑machine rentals.",
+            "cost": "Paid (reserve by hour)",
+            "category": "public_center"
+            },
+            {
+            "name": "Kiest Tennis Center",
+            "rating": 4.5,
+            "address": "2324 W Kiest Blvd, Dallas, TX",
+            "location": "Oak Cliff",
+            "features": ["16 courts", "Lights", "Pro shop", "Lessons", "Leagues"],
+            "description": "Large public tennis center offering courts, lessons, leagues, and full‑service amenities.",
+            "cost": "Paid (reserve)",
+            "category": "public_center"
+            },
+            {
+            "name": "L.B. Houston Tennis Center",
+            "rating": 4.5,
+            "address": "11225 Luna Rd, Dallas, TX",
+            "location": "Northwest Dallas",
+            "features": ["12 courts", "Lights", "Pro shop", "Lessons", "Booking available"],
+            "description": "Comprehensive public tennis complex with courts, instruction, leagues, and equipment services.",
+            "cost": "Paid (reserve)",
+            "category": "public_center"
+            },
+            {
+            "name": "Samuell‑Grand Tennis Center",
+            "rating": 4.6,
+            "address": "6220 E Grand Ave, Dallas, TX",
+            "location": "East Dallas",
+            "features": ["16–20 outdoor courts", "Lights", "Pro shop", "Leagues", "Tournaments"],
+            "description": "Large-scale public facility great for group matches, lessons, tournaments, and open play.",
+            "cost": "Paid (reserve)",
+            "category": "public_center"
+            },
+            {
+            "name": "Reverchon Park Tennis Courts",
+            "rating": 4.4,
+            "address": "3505 Maple Ave, Dallas, TX 75219",
+            "location": "Oak Lawn / Turtle Creek",
+            "features": ["2 hard courts", "Lights", "Free access", "Park setting"],
+            "description": "Historic park courts set in a scenic recreational area—friendly beginner‑oriented environment.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Stevens Park Tennis Courts",
+            "rating": 4.3,
+            "address": "2171 Kessler Pkwy, Dallas, TX",
+            "location": "Kessler Park",
+            "features": ["2 hard courts", "No lights", "Well‑maintained"],
+            "description": "Convenient, quiet public courts with solid maintenance—excellent for casual daytime play.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Lake Highlands North Park Tennis Courts",
+            "rating": 4.4,
+            "address": "9344 Church Rd, Dallas, TX",
+            "location": "Lake Highlands",
+            "features": ["8 hard courts", "Lights", "Picnic & trail access"],
+            "description": "Family‑friendly park with multiple lighted courts—great for recreation alongside walking trails.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Preston Hollow Park Courts",
+            "rating": 4.2,
+            "address": "6600 Park Ln, Dallas, TX",
+            "location": "Preston Hollow",
+            "features": ["2 courts", "Lights", "First‑come access"],
+            "description": "Small neighborhood park courts—free and accessible, ideal for quick casual play.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Glendale Park Tennis Courts",
+            "rating": 4.2,
+            "address": "1515 E. Ledbetter Dr, Dallas, TX",
+            "location": "South Dallas",
+            "features": ["8 hard courts", "Lights", "Free access"],
+            "description": "Well‑lit and spacious courts in South Dallas—great public option with strong availability.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Fair Oaks Tennis Center",
+            "rating": 4.4,
+            "address": "6500 Flagship Dr, Dallas, TX",
+            "location": "Far North Dallas",
+            "features": ["8 outdoor courts", "Lights", "Restrooms", "Booking"],
+            "description": "Amateur‑friendly public tennis center with lighted courts and basic amenities.",
+            "cost": "Paid (reserve)",
+            "category": "public_center"
+            },
+            {
+            "name": "Oak Creek Tennis Center",
+            "rating": 4.3,
+            "address": "Carrollton, TX (near Dallas)",
+            "location": "Carrollton",
+            "features": ["Multiple courts", "Leagues", "Clinics", "Booking"],
+            "description": "Municipal tennis facility offering leagues, clinics, ball machines, and events.",
+            "cost": "Paid (reserve)",
+            "category": "public_center"
+            },
+            {
+            "name": "Exall Park Tennis Courts",
+            "rating": 4.1,
+            "address": "1355 Adair St, Dallas, TX",
+            "location": "Downtown-adjacent",
+            "features": ["4 outdoor courts", "Picnic areas", "Free access"],
+            "description": "Smaller courts in a neighborhood park—quick pickup games and casual play near downtown.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Randall Park Tennis Courts",
+            "rating": 4.2,
+            "address": "5880 Columbia Ave, Dallas, TX",
+            "location": "North Dallas",
+            "features": ["4 courts", "Lights", "Public access"],
+            "description": "Convenient North Dallas public courts - suitable for community play and practice.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Juanita Craft Park Tennis Courts",
+            "rating": 4.1,
+            "address": "2912 Foreman St, Dallas, TX",
+            "location": "South Dallas",
+            "features": ["2 courts", "Lights", "Public access"],
+            "description": "Community park with lighted courts—ideal for neighborhood play and casual hits.",
+            "cost": "Free",
+            "category": "public"
+            }
+        ];
+
+        // Sort courts by rating (highest first)
+        courtData.sort((a, b) => b.rating - a.rating);
+
+        function createStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (hasHalfStar) stars += '☆';
+            
+            return stars;
+        }
+
+        function renderCourts(courts) {
+            const grid = document.getElementById('courtsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (courts.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = courts.map(court => `
+                <div class="court-card">
+                    <div class="court-header">
+                        <div>
+                            <h3 class="court-name">${court.name}</h3>
+                            <div class="address">📍 ${court.address}</div>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${createStars(court.rating)}</span>
+                            <span>${court.rating}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        ${court.features.map(feature => 
+                            `<span class="feature-tag">${feature}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="description">${court.description}</div>
+                    
+                    <div class="court-footer">
+                        <div class="cost">💰 ${court.cost}</div>
+                        <div class="location-badge">${court.location}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCourts(searchTerm) {
+            const filtered = courtData.filter(court => 
+                court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                court.description.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderCourts(filtered);
+        }
+
+        // Initialize
+        renderCourts(courtData);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterCourts(e.target.value);
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.court-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${0.8 + index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out both';
+            });
+        });
+    </script>
+</body>
+</html>

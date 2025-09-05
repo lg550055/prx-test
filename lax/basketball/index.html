@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles best public basketball courts</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/tennis-styles.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../components/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🏀 Los Angeles Public Basketball Courts</h1>
+            <p>Find the best public basketball courts in Los Angeles - sorted by rating</p>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search courts by name, location, or features...">
+        </div>
+
+        <div class="courts-grid" id="courtsGrid">
+            <!-- Courts populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No courts match your search criteria. Try adjusting your search terms.
+        </div>
+    </div>
+    <!-- Inserts footer -->
+    <script src="../../components/footer.js"></script>
+
+    <script>
+        const courtData = [
+            {
+            "name": "Venice Beach Basketball Courts",
+            "rating": 4.8,
+            "address": "Venice Beach Boardwalk, Los Angeles, CA 90291",
+            "location": "Venice",
+            "features": ["Oceanfront view", "Iconic streetball atmosphere", "Pickup games"],
+            "description": "Legendary outdoor courts known for vibrant streetball, frequent NBA‑level pickup games, and a scenic beachfront backdrop.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Pan Pacific Park",
+            "rating": 4.5,
+            "address": "7600 Beverly Blvd, Los Angeles, CA 90036",
+            "location": "Fairfax / Mid‑City West",
+            "features": ["Well‑maintained courts", "Park setting", "Multiple sports amenities"],
+            "description": "Popular outdoor courts in a spacious park—great for pickup games amidst green surroundings.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Playa Vista Central Park Courts",
+            "rating": 4.7,
+            "address": "12045 Waterfront Drive, Los Angeles, CA 90094",
+            "location": "Playa Vista",
+            "features": ["Sleek blue hardcourt", "Clean and enclosed", "Near ponds & gardens"],
+            "description": "Modern courts with well-maintained surfaces, set within Playa Vista Central Park with scenic surroundings.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Angels Gate Park",
+            "rating": 4.6,
+            "address": "3601 S Gaffey St, San Pedro, CA 90731",
+            "location": "San Pedro",
+            "features": ["Panoramic ocean views", "Scenic coastal setting"],
+            "description": "Outdoor court perched above the ocean—with sweeping Pacific views, it’s as beautiful as it is serene.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Cheviot Hills Park",
+            "rating": 4.4,
+            "address": "2551 Motor Ave (Pico Blvd), Los Angeles, CA 90064",
+            "location": "Westside",
+            "features": ["Newly resurfaced courts", "Family‑friendly park", "Dog park nearby"],
+            "description": "Large, newly resurfaced outdoor courts in a family and pet‑friendly park setting.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Encino Park",
+            "rating": 4.7,
+            "address": "17000 Ventura Blvd, Encino, CA",
+            "location": "Encino",
+            "features": ["Park environment", "Gated playground", "Tennis and basketball"],
+            "description": "Quiet, well‑maintained park with sports courts and children's play areas—great for casual play.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Virginia Avenue Park",
+            "rating": 4.3,
+            "address": "2200 Virginia Ave, Santa Monica, CA",
+            "location": "Santa Monica",
+            "features": ["Courts and playground", "Community center", "Farmers' market"],
+            "description": "Community‑oriented park with basketball, playgrounds, and weekend markets—a vibrant local spot.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Memorial Park Recreation Center",
+            "rating": 4.5,
+            "address": "1620‑1698 16th St, Los Angeles, CA",
+            "location": "West LA",
+            "features": ["Indoor courts", "Pick‑up nights", "Recreation center"],
+            "description": "Indoor courts with organized pickup games on select evenings—good for structured play.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Silver Lake Basketball Court",
+            "rating": 4.4,
+            "address": "2901 Van Pelt Place, Los Angeles, CA 90026",
+            "location": "Silver Lake",
+            "features": ["Hip, laid‑back vibe", "Famous area", "Dawn‑to‑dusk hours"],
+            "description": "A chill neighborhood court popular for casual shoots, with a hip Silver Lake community vibe.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Poinsettia Recreation Center",
+            "rating": 4.6,
+            "address": "7341 Willoughby Ave, Los Angeles, CA 90046",
+            "location": "Hollywood Hills",
+            "features": ["Pick‑up games", "Indoor & outdoor courts", "Multi‑sport facility"],
+            "description": "Serious pickup spot frequented by all levels—from celebs to local regulars—lively and competitive.",
+            "cost": "Free or modest fee",
+            "category": "public"
+            },
+            {
+            "name": "Westwood Recreation Center Outdoor Courts",
+            "rating": 4.3,
+            "address": "1350 S Sepulveda Blvd, Los Angeles, CA 90025",
+            "location": "Westwood",
+            "features": ["Pickup games", "Barbecue area", "Lighted courts"],
+            "description": "Outdoor courts in a recreation center that hosts energetic summer pickup games and amenities.",
+            "cost": "Free or nominal fee",
+            "category": "public"
+            },
+            {
+            "name": "Lafayette Park Recreation Center",
+            "rating": 4.2,
+            "address": "Wilshire Blvd & Park, Los Angeles, CA",
+            "location": "Downtown LA",
+            "features": ["Historic location", "Courts featured in film", "Urban feel"],
+            "description": "Historic downtown courts featured in *White Men Can’t Jump*, with community and urban ambience.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Echo Park Lake Basketball Courts",
+            "rating": 4.3,
+            "address": "Echo Park Lake, Los Angeles, CA",
+            "location": "Echo Park",
+            "features": ["Picturesque setting", "Lake backdrop", "Park trail nearby"],
+            "description": "Courts beside the lake offering a serene play atmosphere with beautiful scenery.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "Del Rey Lagoon Park Courts",
+            "rating": 4.4,
+            "address": "6660 Esplanade Place, Playa Del Rey, CA 90293",
+            "location": "Playa Del Rey",
+            "features": ["Lighted courts", "Family park", "Walking trails"],
+            "description": "Neighborhood park with lighted basketball courts, lagoon views, and walking paths.",
+            "cost": "Free",
+            "category": "public"
+            },
+            {
+            "name": "City Terrace County Park",
+            "rating": 4.2,
+            "address": "City Terrace County Park, East Los Angeles, CA",
+            "location": "East LA",
+            "features": ["Basketball court", "Gymnasium", "Multi‑purpose community center"],
+            "description": "Community park with basketball court and full facilities including gym and playground.",
+            "cost": "Free",
+            "category": "public"
+            }
+        ];
+
+        // Sort courts by rating (highest first)
+        courtData.sort((a, b) => b.rating - a.rating);
+
+        function createStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            if (hasHalfStar) stars += '☆';
+            
+            return stars;
+        }
+
+        function renderCourts(courts) {
+            const grid = document.getElementById('courtsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (courts.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = courts.map(court => `
+                <div class="court-card">
+                    <div class="court-header">
+                        <div>
+                            <h3 class="court-name">${court.name}</h3>
+                            <div class="address">📍 ${court.address}</div>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">${createStars(court.rating)}</span>
+                            <span>${court.rating}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        ${court.features.map(feature => 
+                            `<span class="feature-tag">${feature}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="description">${court.description}</div>
+                    
+                    <div class="court-footer">
+                        <div class="cost">💰 ${court.cost}</div>
+                        <div class="location-badge">${court.location}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCourts(searchTerm) {
+            const filtered = courtData.filter(court => 
+                court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                court.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                court.description.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderCourts(filtered);
+        }
+
+        // Initialize
+        renderCourts(courtData);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterCourts(e.target.value);
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.court-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${0.8 + index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out both';
+            });
+        });
+    </script>
+</body>
+</html>
