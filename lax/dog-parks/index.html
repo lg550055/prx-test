@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Inserts header -->
-    <script src="../../components/header.js"></script>
+    <script src="../../js/header.js"></script>
 
     <div class="container">
         <div class="title">
@@ -21,174 +21,138 @@
         <div id="parksGrid" class="parks-grid"></div>
     </div>
     <!-- Inserts footer -->
-    <script src="../../components/footer.js"></script>
+    <script src="../../js/footer.js"></script>
+
+    <script src="../../js/parks.js"></script>
     <script>
-    // Dog parks data
-    const dogParks = [
-        {
-            name: "Library Square Dog Park",
-            neighborhood: "Sherman Oaks",
-            adjacent: "Van Nuys, Studio City, Encino",
-            description: "Official haven for dog lovers seeking quality time with their furry companions, offering a secure area for playful activities.",
-            address: {
-                text: "14238 Moorpark St, Sherman Oaks, CA 91423",
-                url: "https://maps.google.com/?q=14238+Moorpark+St,+Sherman+Oaks,+CA+91423"
+        // Dog parks data
+        const parkData = [
+            {
+                name: "Library Square Dog Park",
+                neighborhood: "Sherman Oaks",
+                adjacent: "Van Nuys, Studio City, Encino",
+                description: "Official haven for dog lovers seeking quality time with their furry companions, offering a secure area for playful activities.",
+                address: {
+                    text: "14238 Moorpark St, Sherman Oaks, CA 91423",
+                    url: "https://maps.google.com/?q=14238+Moorpark+St,+Sherman+Oaks,+CA+91423"
+                },
+                hours: "Dawn to dusk",
+                amenities: [
+                    { emoji: "🚗", label: "Street Parking", tooltip: "Street parking available", status: "available" },
+                    { emoji: "💧", label: "Water", tooltip: "Water available for dogs", status: "available" },
+                    { emoji: "🪑", label: "Seating", tooltip: "Benches available", status: "available" },
+                    { emoji: "🌳", label: "Limited Shade", tooltip: "Limited natural shade", status: "limited" },
+                    { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
+                ],
+                features: "Dedicated dog-friendly space for socializing and exercise"
             },
-            hours: "Dawn to dusk",
-            amenities: [
-                { emoji: "🚗", label: "Street Parking", tooltip: "Street parking available", status: "available" },
-                { emoji: "💧", label: "Water", tooltip: "Water available for dogs", status: "available" },
-                { emoji: "🪑", label: "Seating", tooltip: "Benches available", status: "available" },
-                { emoji: "🌳", label: "Limited Shade", tooltip: "Limited natural shade", status: "limited" },
-                { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
-            ],
-            features: "Dedicated dog-friendly space for socializing and exercise"
-        },
-        {
-            name: "Laurel Canyon Dog Park",
-            neighborhood: "Laurel Canyon",
-            adjacent: "Hollywood Hills, Studio City, Sherman Oaks",
-            description: "Large fenced-in park features separate sections for small and large dogs, benches, a pergola and picnic tables.",
-            address: {
-                text: "8260 Mulholland Dr, Los Angeles, CA 90046",
-                url: "https://maps.google.com/?q=8260+Mulholland+Dr,+Los+Angeles,+CA+90046"
+            {
+                name: "Laurel Canyon Dog Park",
+                neighborhood: "Laurel Canyon",
+                adjacent: "Hollywood Hills, Studio City, Sherman Oaks",
+                description: "Large fenced-in park features separate sections for small and large dogs, benches, a pergola and picnic tables.",
+                address: {
+                    text: "8260 Mulholland Dr, Los Angeles, CA 90046",
+                    url: "https://maps.google.com/?q=8260+Mulholland+Dr,+Los+Angeles,+CA+90046"
+                },
+                hours: "Dawn to dusk (closed Fridays 6:00 AM - 11:00 AM for maintenance)",
+                amenities: [
+                    { emoji: "🅿️", label: "35-Car Lot", tooltip: "35-car capacity parking lot", status: "available" },
+                    { emoji: "💧", label: "Water", tooltip: "Water fountains available", status: "available" },
+                    { emoji: "🪑", label: "Seating", tooltip: "Shaded benches and picnic areas", status: "available" },
+                    { emoji: "🌳", label: "Pergola & Shade", tooltip: "Pergola and lots of shaded benches", status: "available" },
+                    { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
+                    { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
+                ],
+                features: "Separate sections for small and large dogs, separate area for small or shy dogs",
+                website: "https://laparks.org"
             },
-            hours: "Dawn to dusk (closed Fridays 6:00 AM - 11:00 AM for maintenance)",
-            amenities: [
-                { emoji: "🅿️", label: "35-Car Lot", tooltip: "35-car capacity parking lot", status: "available" },
-                { emoji: "💧", label: "Water", tooltip: "Water fountains available", status: "available" },
-                { emoji: "🪑", label: "Seating", tooltip: "Shaded benches and picnic areas", status: "available" },
-                { emoji: "🌳", label: "Pergola & Shade", tooltip: "Pergola and lots of shaded benches", status: "available" },
-                { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
-                { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
-            ],
-            features: "Separate sections for small and large dogs, separate area for small or shy dogs",
-            website: "https://laparks.org"
-        },
-        {
-            name: "Van Nuys Sherman Oaks Recreation Center",
-            neighborhood: "Sherman Oaks/Van Nuys border",
-            adjacent: "Van Nuys, Sherman Oaks, Valley Glen",
-            description: "Multi-purpose recreation center with dog-friendly areas and comprehensive sports facilities.",
-            address: {
-                text: "14201 Huston St, Sherman Oaks, CA 91423",
-                url: "https://maps.google.com/?q=14201+Huston+St,+Sherman+Oaks,+CA+91423"
+            {
+                name: "Van Nuys Sherman Oaks Recreation Center",
+                neighborhood: "Sherman Oaks/Van Nuys border",
+                adjacent: "Van Nuys, Sherman Oaks, Valley Glen",
+                description: "Multi-purpose recreation center with dog-friendly areas and comprehensive sports facilities.",
+                address: {
+                    text: "14201 Huston St, Sherman Oaks, CA 91423",
+                    url: "https://maps.google.com/?q=14201+Huston+St,+Sherman+Oaks,+CA+91423"
+                },
+                hours: "Varies by facility; call (818) 783-5121",
+                amenities: [
+                    { emoji: "🅿️", label: "On-Site Parking", tooltip: "On-site parking available", status: "available" },
+                    { emoji: "💧", label: "Water", tooltip: "Water available", status: "available" },
+                    { emoji: "🪑", label: "Seating", tooltip: "Benches and seating areas", status: "available" },
+                    { emoji: "🏠", label: "Covered Areas", tooltip: "Some covered areas available", status: "available" },
+                    { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
+                    { emoji: "🐕", label: "Check Policy", tooltip: "Check with facility for dog area policies", status: "limited" }
+                ],
+                features: "Multiple sports facilities, children's play area, indoor and outdoor basketball courts",
+                website: "https://laparks.org/reccenter/vnso"
             },
-            hours: "Varies by facility; call (818) 783-5121",
-            amenities: [
-                { emoji: "🅿️", label: "On-Site Parking", tooltip: "On-site parking available", status: "available" },
-                { emoji: "💧", label: "Water", tooltip: "Water available", status: "available" },
-                { emoji: "🪑", label: "Seating", tooltip: "Benches and seating areas", status: "available" },
-                { emoji: "🏠", label: "Covered Areas", tooltip: "Some covered areas available", status: "available" },
-                { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
-                { emoji: "🐕", label: "Check Policy", tooltip: "Check with facility for dog area policies", status: "limited" }
-            ],
-            features: "Multiple sports facilities, children's play area, indoor and outdoor basketball courts",
-            website: "https://laparks.org/reccenter/vnso"
-        },
-        {
-            name: "Sepulveda Basin Off-Leash Dog Park",
-            neighborhood: "Van Nuys/Encino border",
-            adjacent: "Sherman Oaks, Encino, Reseda",
-            description: "Popular off-leash dog park in the Sepulveda Basin Recreation Area with ample space for dogs to run and play.",
-            address: {
-                text: "Sepulveda Basin, Van Nuys, CA (near Sherman Oaks)",
-                url: "https://maps.google.com/?q=Sepulveda+Basin,+Van+Nuys,+CA"
+            {
+                name: "Sepulveda Basin Off-Leash Dog Park",
+                neighborhood: "Van Nuys/Encino border",
+                adjacent: "Sherman Oaks, Encino, Reseda",
+                description: "Popular off-leash dog park in the Sepulveda Basin Recreation Area with ample space for dogs to run and play.",
+                address: {
+                    text: "Sepulveda Basin, Van Nuys, CA (near Sherman Oaks)",
+                    url: "https://maps.google.com/?q=Sepulveda+Basin,+Van+Nuys,+CA"
+                },
+                hours: "Dawn to dusk",
+                amenities: [
+                    { emoji: "🅿️", label: "Large Lot", tooltip: "Large parking lot available", status: "available" },
+                    { emoji: "💧", label: "Dog Fountains", tooltip: "Dog water fountains available", status: "available" },
+                    { emoji: "🪑", label: "Benches", tooltip: "Benches throughout the area", status: "available" },
+                    { emoji: "🌳", label: "Tree Coverage", tooltip: "Some tree coverage for shade", status: "available" },
+                    { emoji: "🚻", label: "Restrooms", tooltip: "Available in recreation area", status: "available" },
+                    { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
+                ],
+                features: "Large open space, separate areas for different sized dogs",
+                website: "https://laparks.org"
             },
-            hours: "Dawn to dusk",
-            amenities: [
-                { emoji: "🅿️", label: "Large Lot", tooltip: "Large parking lot available", status: "available" },
-                { emoji: "💧", label: "Dog Fountains", tooltip: "Dog water fountains available", status: "available" },
-                { emoji: "🪑", label: "Benches", tooltip: "Benches throughout the area", status: "available" },
-                { emoji: "🌳", label: "Tree Coverage", tooltip: "Some tree coverage for shade", status: "available" },
-                { emoji: "🚻", label: "Restrooms", tooltip: "Available in recreation area", status: "available" },
-                { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
-            ],
-            features: "Large open space, separate areas for different sized dogs",
-            website: "https://laparks.org"
-        },
-        {
-            name: "Valley Village Park",
-            neighborhood: "Valley Village",
-            adjacent: "Sherman Oaks, Studio City, North Hollywood",
-            description: "Neighborhood park with dog area in a family-friendly setting perfect for local dog owners.",
-            address: {
-                text: "Colfax Ave & Bellingham Ave, Valley Village, CA",
-                url: "https://maps.google.com/?q=Colfax+Ave+%26+Bellingham+Ave,+Valley+Village,+CA"
+            {
+                name: "Valley Village Park",
+                neighborhood: "Valley Village",
+                adjacent: "Sherman Oaks, Studio City, North Hollywood",
+                description: "Neighborhood park with dog area in a family-friendly setting perfect for local dog owners.",
+                address: {
+                    text: "Colfax Ave & Bellingham Ave, Valley Village, CA",
+                    url: "https://maps.google.com/?q=Colfax+Ave+%26+Bellingham+Ave,+Valley+Village,+CA"
+                },
+                hours: "Dawn to dusk",
+                amenities: [
+                    { emoji: "🚗", label: "Street Parking", tooltip: "Street parking available", status: "available" },
+                    { emoji: "💧", label: "Water", tooltip: "Water available", status: "available" },
+                    { emoji: "🪑", label: "Park Benches", tooltip: "Park benches available", status: "available" },
+                    { emoji: "🌳", label: "Tree Coverage", tooltip: "Natural tree coverage for shade", status: "available" },
+                    { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
+                    { emoji: "🐕", label: "Off-Leash Area", tooltip: "Designated off-leash area", status: "available" }
+                ],
+                features: "Family-friendly neighborhood park setting"
             },
-            hours: "Dawn to dusk",
-            amenities: [
-                { emoji: "🚗", label: "Street Parking", tooltip: "Street parking available", status: "available" },
-                { emoji: "💧", label: "Water", tooltip: "Water available", status: "available" },
-                { emoji: "🪑", label: "Park Benches", tooltip: "Park benches available", status: "available" },
-                { emoji: "🌳", label: "Tree Coverage", tooltip: "Natural tree coverage for shade", status: "available" },
-                { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
-                { emoji: "🐕", label: "Off-Leash Area", tooltip: "Designated off-leash area", status: "available" }
-            ],
-            features: "Family-friendly neighborhood park setting"
-        },
-        {
-            name: "Whitnall Off-Leash Dog Park",
-            neighborhood: "North Hollywood",
-            adjacent: "Sherman Oaks, Studio City, Valley Village",
-            description: "Dedicated off-leash dog area with well-maintained facilities.",
-            address: {
-                text: "North Hollywood area (serving Sherman Oaks residents)",
-                url: "https://maps.google.com/?q=Whitnall+Dog+Park,+North+Hollywood,+CA"
-            },
-            hours: "Dawn to dusk",
-            amenities: [
-                { emoji: "🅿️", label: "Parking", tooltip: "Parking available", status: "available" },
-                { emoji: "💧", label: "Dog Fountains", tooltip: "Dog water fountains available", status: "available" },
-                { emoji: "🪑", label: "Benches", tooltip: "Benches available", status: "available" },
-                { emoji: "🌳", label: "Partial Shade", tooltip: "Partial shade available", status: "limited" },
-                { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
-                { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
-            ],
-            features: "Well-maintained fenced area",
-            website: "https://laparks.org"
-        }
-    ];
+            {
+                name: "Whitnall Off-Leash Dog Park",
+                neighborhood: "North Hollywood",
+                adjacent: "Sherman Oaks, Studio City, Valley Village",
+                description: "Dedicated off-leash dog area with well-maintained facilities.",
+                address: {
+                    text: "North Hollywood area (serving Sherman Oaks residents)",
+                    url: "https://maps.google.com/?q=Whitnall+Dog+Park,+North+Hollywood,+CA"
+                },
+                hours: "Dawn to dusk",
+                amenities: [
+                    { emoji: "🅿️", label: "Parking", tooltip: "Parking available", status: "available" },
+                    { emoji: "💧", label: "Dog Fountains", tooltip: "Dog water fountains available", status: "available" },
+                    { emoji: "🪑", label: "Benches", tooltip: "Benches available", status: "available" },
+                    { emoji: "🌳", label: "Partial Shade", tooltip: "Partial shade available", status: "limited" },
+                    { emoji: "🚻", label: "Restrooms", tooltip: "Restroom facilities available", status: "available" },
+                    { emoji: "🐕", label: "Off-Leash", tooltip: "Off-leash area available", status: "available" }
+                ],
+                features: "Well-maintained fenced area",
+                website: "https://laparks.org"
+            }
+        ];
 
-    function renderParks(parks) {
-        const root = document.getElementById('parksGrid');
-        root.innerHTML = parks.map(park => `
-            <div class="park-card">
-                <div class="park-header">
-                    <div class="park-name">${park.name}</div>
-                    <div class="park-neighborhood">${park.neighborhood}</div>
-                    <div class="adjacent-neighborhoods">Adjacent: ${park.adjacent}</div>
-                </div>
-                <div class="park-content">
-                    <div class="park-description">
-                        ${park.description}
-                    </div>
-                    <div class="park-address">
-                        <a href="${park.address.url}" target="_blank" class="address-link">📍 ${park.address.text}</a>
-                    </div>
-                    <div class="hours-info">
-                        <strong>🕐 Hours:</strong> ${park.hours}
-                    </div>
-                    <div class="amenities">
-                        ${park.amenities.map(a => `
-                            <div class="amenity ${a.status}">
-                                <span class="emoji">${a.emoji}</span>
-                                <span>${a.label}</span>
-                                <div class="tooltip">${a.tooltip}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="special-features">
-                        <h4>✨ Special Features</h4>
-                        <p>${park.features}</p>
-                    </div>
-                    ${park.website ? `<a href="${park.website}" class="website-link" target="_blank">Visit Website</a>` : ""}
-                </div>
-            </div>
-        `).join('');
-    }
-
-    renderParks(dogParks);
+        renderParks(parkData);
     </script>
 </body>
 </html>
