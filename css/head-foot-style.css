@@ -1,8 +1,8 @@
 header {
     /* position: fixed; */
     display: flex;
-    width: 100%;
-    padding: 0.3rem 2% 0.7rem;
+    /* width: 100%; */
+    padding: 0.3rem 1rem 0.7rem;
     justify-content: space-between;
     background: var(--hf-bkg-color, rgba(50,50,50,0.9));
     align-items: center;
@@ -27,17 +27,15 @@ nav a {
 }
 
 footer {
-    background: radial-gradient(var(--hf-bkg-color), var(--off-black));
-    color: var(--off-white, #f0f0f0);
-    padding: 2rem 1rem 0.5rem;
+    background: var(--hf-bkg-color);
+    color: var(--color2);
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 1rem 1rem;
     text-align: center;
     font-size: 0.9rem;
-  }
-  footer a {
+}
+footer a {
     color: var(--color2, #667eea);
-    margin: 1rem;
-  }
-  footer p {
-    margin-bottom: 0.4rem;
-  }
-  
+    margin-left: 1rem;
+}

@@ -1,7 +1,7 @@
 const footerStr = `
     <footer>
         <p>&copy; 2025 Places2Go 💡 All rights reserved</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+        <p><a href="#">Privacy Policy</a> <a href="#">Terms</a></p>
     </footer>
 `;
 
