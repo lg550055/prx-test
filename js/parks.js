@@ -4,10 +4,20 @@
  *
  * @param {Array} parks - An array of park objects to render
  */
-
 function renderParks(parks) {
-    const root = document.getElementById('parksGrid');
-    root.innerHTML = parks.map(park => `
+    const grid = document.getElementById('parksGrid');
+    const noResults = document.getElementById('noResults');
+
+    if (parks.length === 0) {
+        grid.style.display = 'none';
+        noResults.style.display = 'block';
+        return;
+    }
+
+    grid.style.display = 'grid';
+    noResults.style.display = 'none';
+
+    grid.innerHTML = parks.map(park => `
         <div class="park-card">
             <div class="park-header">
                 <div class="park-name">${park.name}</div>
@@ -51,10 +61,7 @@ function renderParks(parks) {
  */
 function filterParks(searchTerm) {
     searchTerm = searchTerm.trim().toLocaleLowerCase();
-    if (searchTerm === "") {
-        renderParks(parkData);
-        return;
-    }
+
     const filtered = parkData.filter(park => 
         park.name.toLowerCase().includes(searchTerm) ||
         park.neighborhood.toLowerCase().includes(searchTerm) ||
