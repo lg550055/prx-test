@@ -1,6 +1,580 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1>Under construction</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dallas-Forth Worth best Dog Parks</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/catego-style.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1163083582599963"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../js/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🐕 Dog Parks in Dallas-Forth Worth, TX</h1>
+            <p>Your guide to the best off-leash adventures in Dallas-Forth Worth, Texas</p>
+        </div>
+        <div id="parksGrid" class="parks-grid"></div>
+    </div>
+    <!-- Inserts footer -->
+    <script src="../../js/footer.js"></script>
+
+    <script src="../../js/parks.js"></script>
+    <script>
+        // Dog park data
+        const parkData = [
+        {
+            "name": "Barry Annino Bark Park (formerly Bark Park Central)",
+            "neighborhood": "Deep Ellum / Downtown",
+            "adjacent": "Deep Ellum, Downtown Dallas",
+            "description": "Urban off‑leash dog park under the US‑75 overpass with murals, dog showers, shaded benches, drinking bowls.",
+            "address": {
+            "text": "2445 Canton St, Dallas, TX 75201",
+            "url": "https://maps.google.com/?q=2445+Canton+St,+Dallas,+TX+75201"
+            },
+            "hours": "Monday, Wednesday–Sunday 6:00 AM–11:00 PM; closed Tuesdays and rain days",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Fully fenced off‑leash area", "status": "available" },
+            { "emoji": "🅿️", "label": "Parking", "tooltip": "Street parking nearby", "status": "limited" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Dog drinking bowls", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Shaded benches", "status": "available" },
+            { "emoji": "🧼", "label": "Dog Shower", "tooltip": "Dog shower available", "status": "available" }
+            ],
+            "features": "Colorful murals, overpass shade, urban aesthetic",
+            "website": "https://www.dallasparks.org/Facilities/Facility/Details/Bark-Park-Central-357"
+        },
+        {
+            "name": "Wagging Tail Dog Park",
+            "neighborhood": "North Dallas",
+            "adjacent": "North Dallas suburbs",
+            "description": "Large 6.9‑acre off‑leash park with loop trail, separate areas for big/small dogs, shady picnic spots.",
+            "address": {
+            "text": "5841 Keller Springs Rd, Dallas, TX 75248",
+            "url": "https://maps.google.com/?q=5841+Keller+Springs+Rd,+Dallas,+TX+75248"
+            },
+            "hours": "Tuesday–Sunday, closed Mondays and rainy days",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Multiple fenced zones", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches & picnic tables", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Drinking fountains", "status": "available" },
+            { "emoji": "🌳", "label": "Shade", "tooltip": "Shaded areas throughout", "status": "available" },
+            { "emoji": "🅿️", "label": "Parking", "tooltip": "On‑site parking", "status": "available" }
+            ],
+            "features": "Scenic loop path, nature observation platform, clean grounds",
+            "website": ""
+        },
+        {
+            "name": "NorthBark Dog Park",
+            "neighborhood": "North Dallas",
+            "adjacent": "Gramercy Oaks area",
+            "description": "Expansive park with areas for small dogs, large dogs, and a central swimming hole.",
+            "address": {
+            "text": "4899 Gramercy Oaks Dr, Dallas, TX 75287",
+            "url": "https://maps.google.com/?q=4899+Gramercy+Oaks+Dr,+Dallas,+TX+75287"
+            },
+            "hours": "Wednesday–Monday 5:00 AM–11:00 PM; closed Tuesdays",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Multiple fenced sections", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Washing station & fountains", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Bench seating shaded", "status": "available" },
+            { "emoji": "🌊", "label": "Swimming", "tooltip": "Small dog swimming hole", "status": "available" }
+            ],
+            "features": "Large acreage, water play, clean and family-friendly",
+            "website": ""
+        },
+        {
+            "name": "White Rock Lake Dog Park",
+            "neighborhood": "East Dallas / White Rock Lake",
+            "adjacent": "White Rock Lake area",
+            "description": "Three separate play areas including water access for dogs; lakeside off‑leash fun.",
+            "address": {
+            "text": "8000 E Mockingbird Ln, Dallas, TX 75218",
+            "url": "https://maps.google.com/?q=8000+E+Mockingbird+Ln,+Dallas,+TX+75218"
+            },
+            "hours": "Tuesday–Sunday 5:00 AM–11:00 PM",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Several fenced zones", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Fountains available", "status": "available" },
+            { "emoji": "🌊", "label": "Water Play", "tooltip": "Lake access for swimming", "status": "available" },
+            { "emoji": "🅿️", "label": "Parking", "tooltip": "Lake parking area", "status": "available" }
+            ],
+            "features": "Spacious lakeside park, separate zones, swimming",
+            "website": ""
+        },
+        {
+            "name": "My Best Friend’s Park at Klyde Warren Park",
+            "neighborhood": "Downtown / Arts District",
+            "adjacent": "Klyde Warren Park, near Arts District",
+            "description": "Designated off‑leash dog zone within urban deck park over the freeway.",
+            "address": {
+            "text": "2012 Woodall Rodgers Fwy, Dallas, TX 75201",
+            "url": "https://maps.google.com/?q=2012+Woodall+Rodgers+Fwy,+Dallas,+TX+75201"
+            },
+            "hours": "6:00 AM–11:00 PM",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Designated zone within park", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Plenty of benches", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Water fountains in park", "status": "available" },
+            { "emoji": "🎨", "label": "Art & Amenities", "tooltip": "Urban park with art, stage, restaurants", "status": "available" }
+            ],
+            "features": "Central location, urban design, public events",
+            "website": "http://www.klydewarrenpark.org"
+        },
+        {
+            "name": "Main Street Garden Urban Dog Run",
+            "neighborhood": "Downtown",
+            "adjacent": "Main Street Garden Park area",
+            "description": "Urban dog run within a 1.75‑acre downtown garden park, with fountains and art.",
+            "address": {
+            "text": "1900 Main St, Dallas, TX 75201",
+            "url": "https://maps.google.com/?q=1900+Main+St,+Dallas,+TX+75201"
+            },
+            "hours": "24 hours",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Dedicated dog run", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Drinking water available", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Seating present", "status": "available" },
+            { "emoji": "🎨", "label": "Art Installations", "tooltip": "Public art & gardens", "status": "available" }
+            ],
+            "features": "Downtown GEM with green space and extended hours",
+            "website": "https://www.mainstreetgarden.org"
+        },
+        {
+            "name": "Crockett Dog Park",
+            "neighborhood": "East Dallas",
+            "adjacent": "Old East Dallas",
+            "description": "Cozy 1.25‑acre off‑leash park with separate paddocks for large and small dogs.",
+            "address": {
+            "text": "321 N Carroll Ave, Dallas, TX 75246",
+            "url": "https://maps.google.com/?q=321+N+Carroll+Ave,+Dallas,+TX+75246"
+            },
+            "hours": "Tuesday–Sunday (closed Mondays and rainy days)",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separated paddocks", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Fountains available", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" },
+            { "emoji": "🆗", "label": "Surface", "tooltip": "Mesh fencing and varied terrain", "status": "available" }
+            ],
+            "features": "Fenced separation, community vibe, neat landscaping",
+            "website": ""
+        },
+        {
+            "name": "Credit Union of Texas Dog Park",
+            "neighborhood": "Near Cityplace / Oak Lawn",
+            "adjacent": "Behind Credit Union of Texas building",
+            "description": "Small, clean off‑leash area with dog playground and picnic tables.",
+            "address": {
+            "text": "1710 N Hall St, Dallas, TX 75204",
+            "url": "https://maps.google.com/?q=1710+N+Hall+St,+Dallas,+TX+75204"
+            },
+            "hours": "Open 24 hours per local guide",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Small fenced play area", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Dog drinking fountain", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Picnic tables", "status": "available" }
+            ],
+            "features": "Accessible anytime, well-maintained small park",
+            "website": ""
+        },
+        {
+            "name": "Swiss & Liberty Dog Park (Meadows Foundation Dog Park)",
+            "neighborhood": "East Dallas",
+            "adjacent": "Deep East Dallas / Baylor area",
+            "description": "Neighborhood off‑leash park known as Meadows Foundation Dog Park.",
+            "address": {
+            "text": "2917 Swiss Avenue, Dallas, TX 75204",
+            "url": "https://maps.google.com/?q=2917+Swiss+Avenue,+Dallas,+TX+75204"
+            },
+            "hours": "Varies—check online",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Neighborhood fenced area", "status": "available" }
+            ],
+            "features": "Local community park, quiet setting",
+            "website": ""
+        },
+        {
+            "name": "Central Community Dog Park",
+            "neighborhood": "West Dallas",
+            "adjacent": "Westside Dr area",
+            "description": "Community dog park at Central Christian Church property.",
+            "address": {
+            "text": "4711 Westside Drive, Dallas, TX 75209",
+            "url": "https://maps.google.com/?q=4711+Westside+Drive,+Dallas,+TX+75209"
+            },
+            "hours": "7:00 AM to dusk",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Fenced community park", "status": "available" }
+            ],
+            "features": "Church-run community space, modest setup",
+            "website": ""
+        },
+        {
+            "name": "Carpenter Park Dog Area",
+            "neighborhood": "Near Deep Ellum / East Dallas",
+            "adjacent": "Carpenter Park area",
+            "description": "Small dog play corner under highway overpass with water feature and tunnels.",
+            "address": {
+            "text": "2201 Pacific Avenue, Dallas, TX 75201",
+            "url": "https://maps.google.com/?q=2201+Pacific+Avenue,+Dallas,+TX+75201"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Small fenced corner", "status": "available" },
+            { "emoji": "🌊", "label": "Water feature", "tooltip": "Play water element", "status": "available" }
+            ],
+            "features": "Cozy underpass area, good for quick play breaks",
+            "website": ""
+        },
+        {
+            "name": "Fort Woof Dog Park",
+            "neighborhood": "Fort Worth",
+            "adjacent": "Gateway Park area",
+            "description": "3.4‑acre large‑dog and 1.6‑acre small‑dog areas with agility courses, fountains, shade.",
+            "address": {
+            "text": "751 Beach St, Fort Worth, TX 76111",
+            "url": "https://maps.google.com/?q=751+Beach+St,+Fort+Worth,+TX+76111"
+            },
+            "hours": "Daily; closed Thursdays, rain closures possible",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate areas for sizes", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Fountains", "status": "available" },
+            { "emoji": "🛝", "label": "Agility", "tooltip": "Agility courses", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Shaded shelters", "status": "available" }
+            ],
+            "features": "Recognized nationally; spacious size splits dogs by size",
+            "website": "https://www.fortworthtexas.gov"
+        },
+        {
+            "name": "Z-Bonz Dog Park",
+            "neighborhood": "Fort Worth",
+            "adjacent": "Camp Bowie area",
+            "description": "10‑acre former golf course with two zones, agility gear, ponds and shelters.",
+            "address": {
+            "text": "6950 W Camp Bowie Blvd, Fort Worth, TX 76116",
+            "url": "https://maps.google.com/?q=6950+W+Camp+Bowie+Blvd,+Fort+Worth,+TX+76116"
+            },
+            "hours": "Tue–Sun; closed Mondays, varying hours",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate large & small dog areas", "status": "available" },
+            { "emoji": "🛝", "label": "Agility", "tooltip": "Agility equipment", "status": "available" },
+            { "emoji": "🌊", "label": "Water Play", "tooltip": "Aerated ponds", "status": "available" },
+            { "emoji": "🪑", "label": "Shelters", "tooltip": "Two covered shelters", "status": "available" }
+            ],
+            "features": "Huge layout, full amenities, great for energetic dogs",
+            "website": ""
+        },
+        {
+            "name": "Tails N’ Trails Dog Park",
+            "neighborhood": "Arlington",
+            "adjacent": "Arlington area",
+            "description": "5.7‑acre improved park with paddock, off‑leash areas, wooded and open spaces.",
+            "address": {
+            "text": "950 SE Green Oaks Blvd, Arlington, TX",
+            "url": "https://maps.google.com/?q=950+SE+Green+Oaks+Blvd,+Arlington,+TX"
+            },
+            "hours": "Daily; improvements recently completed",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Large & small dog areas", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" },
+            { "emoji": "🌲", "label": "Nature", "tooltip": "Wooded and open zones", "status": "available" }
+            ],
+            "features": "Trails, new improvements, varied terrain",
+            "website": ""
+        },
+        {
+            "name": "Rush Creek Dog Park",
+            "neighborhood": "Arlington",
+            "adjacent": "Rush Creek area",
+            "description": "5.3‑acre park with separate areas for large and small dogs, shaded benches.",
+            "address": {
+            "text": "1900 Valleywood Dr, Arlington, TX",
+            "url": "https://maps.google.com/?q=1900+Valleywood+Dr,+Arlington,+TX"
+            },
+            "hours": "Daily; closed Wednesdays mornings",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate fenced zones", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches and shade", "status": "available" }
+            ],
+            "features": "Spacious, shaded, well‑set for families",
+            "website": ""
+        },
+        {
+            "name": "Arrowhead Park (Dog Park)",
+            "neighborhood": "Arlington (Viridian)",
+            "adjacent": "Viridian development",
+            "description": "Small fenced dog park with toys and a pond for cooling off.",
+            "address": {
+            "text": "1300 Autumn Mist Way, Arlington, TX",
+            "url": "https://maps.google.com/?q=1300+Autumn+Mist+Way,+Arlington,+TX"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Small fenced area", "status": "available" },
+            { "emoji": "🌊", "label": "Pond", "tooltip": "Pond for cooling", "status": "available" },
+            { "emoji": "🪁", "label": "Toys", "tooltip": "Play toys available", "status": "available" }
+            ],
+            "features": "Neighborhood park with water feature",
+            "website": ""
+        },
+        {
+            "name": "Boo Boo’s Buddies Dog Park",
+            "neighborhood": "Southlake",
+            "adjacent": "Bob Jones Park",
+            "description": "2.5‑acre shaded off‑leash area with fountains and benches.",
+            "address": {
+            "text": "3901 N White Chapel Blvd, Southlake, TX 76092",
+            "url": "https://maps.google.com/?q=3901+N+White+Chapel+Blvd,+Southlake,+TX+76092"
+            },
+            "hours": "Daily 6 AM–11 PM",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Enclosed area", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Fountains for dogs", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" }
+            ],
+            "features": "Quiet, shaded suburban space",
+            "website": ""
+        },
+        {
+            "name": "Euless Dog Park",
+            "neighborhood": "Euless",
+            "adjacent": "Bear Creek Park area",
+            "description": "3‑acre park with separate areas for large/small dogs, tables and rinsing stations.",
+            "address": {
+            "text": "1951 Bear Creek Pkwy, Euless, TX 76039",
+            "url": "https://maps.google.com/?q=1951+Bear+Creek+Pkwy,+Euless,+TX+76039"
+            },
+            "hours": "Daily dawn–dusk; closed Thursdays",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate dog zones", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Dog rinsing station", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Tables for humans", "status": "available" }
+            ],
+            "features": "Family‑friendly, handy rinsing setup",
+            "website": ""
+        },
+        {
+            "name": "Bedford Bark Park",
+            "neighborhood": "Bedford",
+            "adjacent": "Mid‑Cities area",
+            "description": "Park with separate areas for dogs, agility equipment, covered picnic tables.",
+            "address": {
+            "text": "3200 Meadow Park Dr, Bedford, TX 76021",
+            "url": "https://maps.google.com/?q=3200+Meadow+Park+Dr,+Bedford,+TX+76021"
+            },
+            "hours": "Dusk–dawn; closed Wed 7 AM–12 PM maintenance",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Large & small dog areas", "status": "available" },
+            { "emoji": "🛝", "label": "Agility", "tooltip": "Equipment available", "status": "available" },
+            { "emoji": "🪑", "label": "Shelter", "tooltip": "Picnic tables", "status": "available" }
+            ],
+            "features": "Mid‑city location with agility and shade",
+            "website": ""
+        },
+        {
+            "name": "Buzz Fence Dog Park",
+            "neighborhood": "White Settlement",
+            "adjacent": "Cherry Lane Park",
+            "description": "Park with large/small zones, agility features, shaded seating and water.",
+            "address": {
+            "text": "312 N Cherry Ln, White Settlement, TX 76108",
+            "url": "https://maps.google.com/?q=312+N+Cherry+Ln,+White+Settlement,+TX+76108"
+            },
+            "hours": "Daily 9 AM–dusk",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate fenced zones", "status": "available" },
+            { "emoji": "🛝", "label": "Agility", "tooltip": "Play features", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Water stations", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Shaded benches", "status": "available" }
+            ],
+            "features": "Well-equipped suburban dog park",
+            "website": ""
+        },
+        {
+            "name": "Irving Dog Park",
+            "neighborhood": "Irving",
+            "adjacent": "Irving Animal Care Campus",
+            "description": "Urban park with small/large dog zones, shade, Wi‑Fi, benches and fountains.",
+            "address": {
+            "text": "4140 Valley View Ln, Irving, TX 75038",
+            "url": "https://maps.google.com/?q=4140+Valley+View+Ln,+Irving,+TX+75038"
+            },
+            "hours": "Sunrise–sunset",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate play areas", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Drinking fountains", "status": "available" },
+            { "emoji": "📶", "label": "Wi‑Fi", "tooltip": "Wifi hotspots", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Shade benches", "status": "available" }
+            ],
+            "features": "Urban, tech‑friendly dog park",
+            "website": ""
+        },
+        {
+            "name": "Dog Park at Bonnie Wenk",
+            "neighborhood": "McKinney",
+            "adjacent": "Bonnie Wenk Park",
+            "description": "2‑acre off‑leash park with splash pad, pavilion, shade, separate areas.",
+            "address": {
+            "text": "2996 Virginia Pkwy, McKinney, TX",
+            "url": "https://maps.google.com/?q=2996+Virginia+Pkwy,+McKinney,+TX"
+            },
+            "hours": "Daily dawn–11 PM",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Fenced play for dogs", "status": "available" },
+            { "emoji": "🌊", "label": "Splash‑Pad", "tooltip": "Splash area for dogs", "status": "available" },
+            { "emoji": "🪑", "label": "Shelter", "tooltip": "Shaded pavilion", "status": "available" }
+            ],
+            "features": "Splash feature with shade—great for hot days",
+            "website": ""
+        },
+        {
+            "name": "Jack Carter Park Dog Area",
+            "neighborhood": "Plano",
+            "adjacent": "Jack Carter Park",
+            "description": "2‑acre double‑gated off‑leash area with water stations, benches, picnic tables.",
+            "address": {
+            "text": "2601 Pleasant Valley Dr, Plano, TX",
+            "url": "https://maps.google.com/?q=2601+Pleasant+Valley+Dr,+Plano,+TX"
+            },
+            "hours": "Varies; closed 1st & 3rd Tuesdays for maintenance",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Safe double‑gated entry", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Drinking stations", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches & picnic tables", "status": "available" }
+            ],
+            "features": "Well‑maintained, lit park in Plano",
+            "website": ""
+        },
+        {
+            "name": "Windhaven Meadows Dog Park",
+            "neighborhood": "Plano",
+            "adjacent": "West Plano",
+            "description": "Large dog park with separate small‑dog area, very well maintained.",
+            "address": {
+            "text": "Windhaven Meadows Park, Plano, TX",
+            "url": "https://maps.google.com/?q=Windhaven+Meadows+Park,+Plano,+TX"
+            },
+            "hours": "Varies; city maintained",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate play zones", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" },
+            { "emoji": "🌳", "label": "Maintenance", "tooltip": "Well‑maintained grounds", "status": "available" }
+            ],
+            "features": "Highly recommended by locals for upkeep",
+            "website": ""
+        },
+        {
+            "name": "McInnish Dog Park",
+            "neighborhood": "Carrollton",
+            "adjacent": "Carrollton area",
+            "description": "Dog park with areas for large/small dogs and a man‑made lake for swimming.",
+            "address": {
+            "text": "Carrollton, TX (Sandy Lake area)",
+            "url": "https://maps.google.com/?q=2241+Sandy+Lake+Rd,+Carrollton,+TX+75006"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Segregated zones", "status": "available" },
+            { "emoji": "🌊", "label": "Swimming", "tooltip": "Man‑made lake swim area", "status": "available" }
+            ],
+            "features": "Unique swim zone; local favorite",
+            "website": ""
+        },
+        {
+            "name": "Pawsome Playground (The Colony)",
+            "neighborhood": "The Colony",
+            "adjacent": "Austin Ranch area",
+            "description": "Large field‑style dog park with separate areas, shade, benches, water stations.",
+            "address": {
+            "text": "The Colony, TX (Austin Ranch)",
+            "url": "https://maps.google.com/?q=The+Colony,+TX"
+            },
+            "hours": "Membership‑based access",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Field‑style play areas", "status": "available" },
+            { "emoji": "🅿️", "label": "Membership", "tooltip": "Paid access setup", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Drinking stations", "status": "available" }
+            ],
+            "features": "Spacious and maintained via membership",
+            "website": ""
+        },
+        {
+            "name": "Garland Dog Park (Glenbrook)",
+            "neighborhood": "Garland",
+            "adjacent": "Glenbrook area",
+            "description": "Fenced dog park with small/large zones, washing station and shade.",
+            "address": {
+            "text": "Glenbrook area, Garland, TX",
+            "url": "https://maps.google.com/?q=Garland,+TX"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Separate fenced zones", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Washing station", "status": "available" },
+            { "emoji": "🪑", "label": "Shade", "tooltip": "Shaded seating", "status": "available" }
+            ],
+            "features": "Quiet, less crowded, locals say “really nice”",
+            "website": ""
+        },
+        {
+            "name": "Prairie Paws (Grand Prairie)",
+            "neighborhood": "Grand Prairie",
+            "adjacent": "Grand Prairie area",
+            "description": "Large yards—three big spaces—popular with community.",
+            "address": {
+            "text": "Grand Prairie, TX",
+            "url": "https://maps.google.com/?q=Grand+Prairie,+TX"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Three large fenced yards", "status": "available" }
+            ],
+            "features": "Spacious; “almost always someone else there” — local recommendation",
+            "website": ""
+        },
+        {
+            "name": "Tipps Canine Hollow (NRH)",
+            "neighborhood": "North Richland Hills",
+            "adjacent": "NRH area",
+            "description": "5‑acre park with doggy fountain and seating.",
+            "address": {
+            "text": "7804 Davis Rd, North Richland Hills, TX 76182",
+            "url": "https://maps.google.com/?q=7804+Davis+Rd,+North+Richland+Hills,+TX+76182"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Fenced dog park", "status": "available" },
+            { "emoji": "💧", "label": "Water", "tooltip": "Doggy fountain", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" }
+            ],
+            "features": "Local community park, good amenities",
+            "website": ""
+        },
+        {
+            "name": "Hound Mound Dog Park (Flower Mound)",
+            "neighborhood": "Flower Mound",
+            "adjacent": "Flower Mound area",
+            "description": "5‑acre dog park, heavily treed with seating.",
+            "address": {
+            "text": "Flower Mound, TX",
+            "url": "https://maps.google.com/?q=Flower+Mound,+TX"
+            },
+            "hours": "Varies",
+            "amenities": [
+            { "emoji": "🐕", "label": "Off‑Leash", "tooltip": "Tree‑covered space", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Seats in shade", "status": "available" }
+            ],
+            "features": "Shady canopy, community environment",
+            "website": ""
+        }
+        ]
+        renderParks(parkData);
+    </script>
+</body>
 </html>
