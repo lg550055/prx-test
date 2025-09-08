@@ -19,7 +19,7 @@ function createStars(rating) {
 }
 
 /**
- * Renders a list of basketball courts into the HTML grid.
+ * Renders a list of courts into the HTML grid.
  * If no courts are found, displays a "No results found" message.
  *
  * @param {Array} courts - An array of court objects to render
