@@ -33,10 +33,9 @@ a:hover {
   font-weight: bold;
 }
 .hor-ad {
-  padding: 1rem 0;
+  padding: 2rem 0;
   text-align: center;
-  /* margin: 0 auto; */
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
 }
 
 .hero {
@@ -61,7 +60,7 @@ a:hover {
 
 .categories {
   color: var(--color2);
-  padding: 4rem 0 5rem;
+  padding: 3.5rem 0 5rem;
   text-align: center;
 }
 .cards {
