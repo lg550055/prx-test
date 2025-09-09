@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denver best Dog Parks</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/catego-style.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1163083582599963"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../js/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🐕 Dog Parks in Denver, CO</h1>
+            <p>Your guide to the best off-leash adventures in Denver, Colorado</p>
+
+            <div class="search-filter">
+                <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search by name, location, or features...">
+            </div>
+        </div>
+
+        <div id="parksGrid" class="parks-grid"></div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No parks match your search criteria. Try a different search term
+        </div>
+    </div>
+    <!-- Inserts footer -->
+    <script src="../../js/footer.js"></script>
+
+    <script src="../../js/parks.js"></script>
+    <script>
+        // Dog park data
+        const parkData = [
+        {
+            "name": "Barnum Dog Park",
+            "neighborhood": "Barnum / West Denver",
+            "adjacent": "Barnum Park, Uptown, Highlands",
+            "description": "Gravel-surface fenced off-leash area with separate high- and low-energy zones, quiet atmosphere.",
+            "address": {
+            "text": "360 Hooker St, Denver, CO 80204",
+            "url": "https://maps.google.com/?q=360+Hooker+St,+Denver,+CO+80204"
+            },
+            "hours": "5AM-11PM daily",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure off-leash area", "status": "available" },
+            { "emoji": "🐕‍🦺", "label": "Separate Zones", "tooltip": "High-energy & low-energy areas", "status": "available" }
+            ],
+            "features": "Adjacent playground and pond as part of Barnum Park.",
+            "website": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation"           
+        },
+        {
+            "name": "Berkeley Dog Park",
+            "neighborhood": "Berkeley",
+            "adjacent": "Berkeley Lake, Lakeside Amusement Park",
+            "description": "Gravel fenced off-leash with separate large/small areas, limited shade and water.",
+            "address": {
+            "text": "W. 46th Ave & Sheridan, Denver, CO",
+            "url": "https://maps.google.com/?q=W+46th+Ave+%26+Sheridan,+Denver,CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" },
+            { "emoji": "🐕‍🦺", "label": "Separate Areas", "tooltip": "Large & small dog zones", "status": "available" },
+            { "emoji": "💧", "label": "Water Bowls", "tooltip": "Water bowls available", "status": "limited" },
+            { "emoji": "🌳", "label": "Shade", "tooltip": "Limited shade", "status": "limited" }
+            ],
+            "features": "Close to Berkeley Lake walking trail.",
+            "website": null
+        },
+        {
+            "name": "Carla Madison Dog Park",
+            "neighborhood": "City Park / East Denver",
+            "adjacent": "City Park",
+            "description": "Standard fenced off-leash park adjacent to large public park.",
+            "address": {
+            "text": "2405 E Colfax Ave, Denver, CO",
+            "url": "https://maps.google.com/?q=2405+E+Colfax+Ave,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset (no lighting)",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Ideal for combining dog play with scenic trail walks.",
+            "website": null
+        },
+        {
+            "name": "Fuller Dog Park",
+            "neighborhood": "City Park North",
+            "adjacent": "City Park",
+            "description": "Basic urban fenced dog park.",
+            "address": {
+            "text": "E. 29th Ave & Franklin, Denver, CO",
+            "url": "https://maps.google.com/?q=E+29th+Ave+%26+Franklin,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced Area", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Basic fenced off-leash park in urban setting.",
+            "website": null
+        },
+        {
+            "name": "Green Valley Ranch East Dog Park",
+            "neighborhood": "Green Valley Ranch, NE Denver",
+            "adjacent": "Neighborhood pool/playground",
+            "description": "Fenced dirt off-leash with separate areas and covered seating.",
+            "address": {
+            "text": "E. 45th Ave & Jebel, Denver, CO",
+            "url": "https://maps.google.com/?q=E+45th+Ave+%26+Jebel,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" },
+            { "emoji": "💺", "label": "Covered Seating", "tooltip": "Shelter for humans", "status": "available" }
+            ],
+            "features": "Dirt fenced off-leash area with covered seating, separate zones.",
+            "website": null
+        },
+        {
+            "name": "Greenway Dog Park",
+            "neighborhood": "Stapleton",
+            "adjacent": "Gateway Park open space",
+            "description": "Large sandy off-leash park with benches, shady trees, water fountain (summer).",
+            "address": {
+            "text": "2002 Spruce St, Denver, CO",
+            "url": "https://maps.google.com/?q=2002+Spruce+St,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" },
+            { "emoji": "💧", "label": "Water Fountain", "tooltip": "Summer only", "status": "limited" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Benches", "status": "available" }
+            ],
+            "features": "Sandy terrain; adjacent walking trails.",
+            "website": null
+        },
+        {
+            "name": "Kennedy Dog Park",
+            "neighborhood": "Hampden / SE Denver",
+            "adjacent": "Cherry Creek corridor",
+            "description": "Fenced with separate play areas, pavilion shade; no water.",
+            "address": {
+            "text": "9700 E Hampden Ave, Denver, CO",
+            "url": "https://maps.google.com/?q=9700+E+Hampden+Ave,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" },
+            { "emoji": "🐕‍🦺", "label": "Separate Areas", "tooltip": "Large & small/high-energy and low-energy", "status": "available" },
+            { "emoji": "🌳", "label": "Shade", "tooltip": "Pavilion", "status": "available" }
+            ],
+            "features": "Well-structured zones, good for mixed-energy groups. No water—bring your own.",
+            "website": null
+        },
+        {
+            "name": "Little Box Car",
+            "neighborhood": "Downtown / Highland",
+            "adjacent": "Broadway & Lawrence area",
+            "description": "Small urban fenced off-leash area.",
+            "address": {
+            "text": "Broadway & Lawrence St, Denver, CO",
+            "url": "https://maps.google.com/?q=Broadway+%26+Lawrence+St,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" }
+            ],
+            "features": "Small urban fenced off-leash area.",
+            "website": null
+        },
+        {
+            "name": "Lowry Dog Park",
+            "neighborhood": "Lowry neighborhood",
+            "adjacent": "Residential/old Lowry base",
+            "description": "Gravel fenced with separate zones and agility obstacles.",
+            "address": {
+            "text": "E. 4th Pl & S. Yosemite, Denver, CO",
+            "url": "https://maps.google.com/?q=E+4th+Pl+%26+S+Yosemite,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" },
+            { "emoji": "⚙️", "label": "Agility Features", "tooltip": "Obstacle course", "status": "available" }
+            ],
+            "features": "Separate energy zones and agility area.",
+            "website": null
+        },
+        {
+            "name": "Railyard Dog Park",
+            "neighborhood": "LoDo (Lower Downtown)",
+            "adjacent": "Downtown core",
+            "description": "Lighted off-leash fenced park, separate play areas and shaded seating.",
+            "address": {
+            "text": "19th Ave & Little Raven (2005 19th St), Denver, CO",
+            "url": "https://maps.google.com/?q=2005+19th+St,+Denver,+CO"
+            },
+            "hours": "5AM-11PM",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" },
+            { "emoji": "💡", "label": "Lighting", "tooltip": "Lighted area", "status": "available" },
+            { "emoji": "🪑", "label": "Seating", "tooltip": "Shaded benches", "status": "available" }
+            ],
+            "features": "The only truly lighted off-leash park in Denver.",
+            "website": null
+        },
+        {
+            "name": "Paco Sanchez (pop-up)",
+            "neighborhood": "Capitol Hill / Downtown",
+            "adjacent": "Avondale Corridor",
+            "description": "Temporary pop-up dog park.",
+            "address": {
+            "text": "14th Ave & Avondale Dr, Denver, CO",
+            "url": "https://maps.google.com/?q=14th+Ave+%26+Avondale+Dr,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+                { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" }
+            ],
+            "features": "Temporary pop-up installation.",
+            "website": null
+        },
+        {
+            "name": "Parkfield Dog Park",
+            "neighborhood": "Green Valley Ranch area",
+            "adjacent": "Residential/commercial area",
+            "description": "Fenced off-leash area.",
+            "address": {
+            "text": "53rd Ave & Chambers St, Denver, CO",
+            "url": "https://maps.google.com/?q=53rd+Ave+%26+Chambers+St,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Fenced off-leash area.",
+            "website": null
+        },
+        {
+            "name": "Sanderson Gulch",
+            "neighborhood": "Baker / South Denver",
+            "adjacent": "Sanderson Gulch trail",
+            "description": "Off-leash linear area along gulch.",
+            "address": {
+            "text": "S. Lipan & W. Arkansas, Denver, CO",
+            "url": "https://maps.google.com/?q=S+Lipan+%26+W+Arkansas,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+                { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" }
+            ],
+            "features": "Linear gulch trail for off-leash walking.",
+            "website": null
+        },
+        {
+            "name": "Skyline Park (pop-up)",
+            "neighborhood": "Downtown",
+            "adjacent": "Arapahoe corridor",
+            "description": "Temporary pop-up dog area.",
+            "address": {
+            "text": "17th St & Arapahoe, Denver, CO",
+            "url": "https://maps.google.com/?q=17th+St+%26+Arapahoe,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+                { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Temporary pop-up installation.",
+            "website": null
+        },
+        {
+            "name": "Sonny Lawson Park",
+            "neighborhood": "Five Points / Downtown",
+            "adjacent": "Five Points area",
+            "description": "Standard fenced off-leash area.",
+            "address": {
+            "text": "24th St & California St, Denver, CO",
+            "url": "https://maps.google.com/?q=24th+St+%26+California+St,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Fenced off-leash area.",
+            "website": null
+        },
+        {
+            "name": "Willow Bark Dog Park",
+            "neighborhood": "Northeast Denver",
+            "adjacent": "Residential area",
+            "description": "Off-leash fenced area.",
+            "address": {
+            "text": "Spruce St & E. 53rd Pl, Denver, CO",
+            "url": "https://maps.google.com/?q=Spruce+St+%26+E+53rd+Pl,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" }
+            ],
+            "features": "Fenced off-leash area.",
+            "website": null
+        },
+        {
+            "name": "Zeckendorf Plaza (pilot)",
+            "neighborhood": "Downtown near Ballpark",
+            "adjacent": "Lincoln corridor",
+            "description": "Pilot downtown dog park relocated from Quality Hill.",
+            "address": {
+            "text": "7th Ave & Lincoln St, Denver, CO",
+            "url": "https://maps.google.com/?q=7th+Ave+%26+Lincoln+St,+Denver,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Pilot off-leash area", "status": "available" }
+            ],
+            "features": "Pilot program relocated to Zeckendorf Plaza.",
+            "website": null
+        },
+        {
+            "name": "Grandview Dog Park",
+            "neighborhood": "Aurora",
+            "adjacent": "Quincy Reservoir",
+            "description": "Fenced >5-acre off-leash with separate areas, drinking fountains (warm months), bag & trash stations.",
+            "address": {
+            "text": "7500 E Quincy Ave, Aurora, CO",
+            "url": "https://maps.google.com/?q=7500+E+Quincy+Ave,+Aurora,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" },
+            { "emoji": "🐕‍🦺", "label": "Separate Areas", "tooltip": "Large & small dogs", "status": "available" },
+            { "emoji": "💧", "label": "Drinking Fountain", "tooltip": "Warm months", "status": "limited" },
+            { "emoji": "🗑️", "label": "Bag/Trash Stations", "tooltip": "Waste management", "status": "available" }
+            ],
+            "features": "Large space by reservoir with good amenities.",
+            "website": null
+        },
+        {
+            "name": "Chatfield State Park Off-Leash Dog Area",
+            "neighborhood": "Littleton",
+            "adjacent": "Chatfield State Park, reservoir",
+            "description": "69-acre fenced area with ponds and mixed trails; one of the largest in metro area.",
+            "address": {
+            "text": "Chatfield State Park, Littleton, CO",
+            "url": "https://maps.google.com/?q=Chatfield+State+Park,+Littleton,+CO"
+            },
+            "hours": "5AM-10PM",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Large off-leash area", "status": "available" },
+            { "emoji": "🌊", "label": "Water Access", "tooltip": "Ponds/reservoir", "status": "available" },
+            { "emoji": "🥾", "label": "Trails", "tooltip": "Gravel and paved", "status": "available" }
+            ],
+            "features": "Massive area, training terrain available with permit.",
+            "website": null
+        },
+        {
+            "name": "Cherry Creek State Park Dog Off-Leash Area",
+            "neighborhood": "Aurora",
+            "adjacent": "Cherry Creek State Park, reservoir",
+            "description": "Large fenced 107-acre off-leash area with water access; requires daily/annual passes and dog permit.",
+            "address": {
+            "text": "Cherry Creek State Park, Aurora, CO",
+            "url": "https://maps.google.com/?q=Cherry+Creek+State+Park,+Aurora,+CO"
+            },
+            "hours": "5AM-10PM",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash play area", "status": "available" },
+            { "emoji": "🌊", "label": "Water Access", "tooltip": "Creek/reservoir", "status": "available" }
+            ],
+            "features": "107 acres in state park; requires vehicle and dog permits.",
+            "website": null
+        },
+        {
+            "name": "Glendale Farms Open Space Dog Park",
+            "neighborhood": "Castle Pines",
+            "adjacent": "Glendale Farms Open Space",
+            "description": "13-17 acre fenced off-leash with obstacle course, dirt surface.",
+            "address": {
+            "text": "Glendale Farms Open Space, Castle Pines, CO",
+            "url": "https://maps.google.com/?q=Glendale+Farms+Open+Space,+Castle+Pines,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Large off-leash area", "status": "available" },
+            { "emoji": "⚙️", "label": "Obstacle Course", "tooltip": "Training features", "status": "available" }
+            ],
+            "features": "Large acreage, scenic, training obstacles.",
+            "website": null
+        },
+        {
+            "name": "Westminster Hills Off-Leash Dog Park",
+            "neighborhood": "Westminster",
+            "adjacent": "Colorado Hills Open Space",
+            "description": "420-acre off-leash area with 2-mile trail, drinking fountain, swimming pond, benches; partially fenced.",
+            "address": {
+            "text": "Simms St & W 105th Dr, Westminster, CO",
+            "url": "https://maps.google.com/?q=Simms+St+%26+W+105th+Dr,+Westminster,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "🥾", "label": "Trail", "tooltip": "2-mile trail", "status": "available" },
+            { "emoji": "🌊", "label": "Pond", "tooltip": "Dog swimming", "status": "available" },
+            { "emoji": "💧", "label": "Fountain", "tooltip": "Drinking water", "status": "available" },
+            { "emoji": "🪑", "label": "Benches", "tooltip": "Seating", "status": "available" }
+            ],
+            "features": "Huge area, partially fenced; voice-respond dogs only.",
+            "website": null
+        },
+        {
+            "name": "Forsberg Iron Spring Dog Park",
+            "neighborhood": "Lakewood",
+            "adjacent": "Green Mountain area",
+            "description": "2.5-acre fenced with obstacle course, dog fountain (off in winter), scenic views.",
+            "address": {
+            "text": "Forsberg Park, Lakewood, CO",
+            "url": "https://maps.google.com/?q=Forsberg+Park,+Lakewood,+CO"
+            },
+            "hours": "5AM-10PM",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" },
+            { "emoji": "⚙️", "label": "Obstacle Course", "tooltip": "Dog training obstacles", "status": "available" },
+            { "emoji": "💧", "label": "Fountain", "tooltip": "May be off in winter", "status": "limited" }
+            ],
+            "features": "Lovely views; fountain may be winter-off.",
+            "website": null
+        },
+        {
+            "name": "Bicentennial Park Dog Area",
+            "neighborhood": "Aurora",
+            "adjacent": "Bicentennial Park pond",
+            "description": "≈1-acre fenced dirt area with gates, bag station, trash can.",
+            "address": {
+            "text": "Bicentennial Park, Aurora, CO",
+            "url": "https://maps.google.com/?q=Bicentennial+Park,+Aurora,+CO"
+            },
+            "hours": "Sunrise-Sunset",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Off-leash area", "status": "available" },
+            { "emoji": "🗑️", "label": "Bag/Trash", "tooltip": "Waste disposal", "status": "available" }
+            ],
+            "features": "Small fenced area by park pond.",
+            "website": null
+        },
+        {
+            "name": "Tony Grampsas Dog Park",
+            "neighborhood": "Golden",
+            "adjacent": "Sports Complex & brewery",
+            "description": "2.5-acre wooded fenced park with creek, shade, picnic areas, hose for rinsing (muddy conditions).",
+            "address": {
+            "text": "4471 Salvia St, Golden, CO 80403",
+            "url": "https://maps.google.com/?q=4471+Salvia+St,+Golden,+CO+80403"
+            },
+            "hours": "6AM-10PM daily",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure play area", "status": "available" },
+            { "emoji": "🌳", "label": "Shade", "tooltip": "Wooded area", "status": "available" },
+            { "emoji": "🌊", "label": "Creek", "tooltip": "Water feature", "status": "available" },
+            { "emoji": "🪑", "label": "Picnic Seating", "tooltip": "Benches & tables", "status": "available" },
+            { "emoji": "💧", "label": "Wash Hose", "tooltip": "For rinsing off", "status": "available" }
+            ],
+            "features": "Popular for its natural setting and access to brewery; expect mud after rain.",
+            "website": "http://www.cityofgolden.net/city-services/dog-parks/"
+        },
+        {
+            "name": "Homer's Run Dog Park",
+            "neighborhood": "Golden",
+            "adjacent": "West of Ulysses St on 10th Ave",
+            "description": "About 1-acre fenced grass area near baseball field.",
+            "address": {
+            "text": "17651 W 10th Ave, Golden, CO",
+            "url": "https://maps.google.com/?q=17651+W+10th+Ave,+Golden,+CO"
+            },
+            "hours": "5AM-10PM daily",
+            "amenities": [
+            { "emoji": "⬜", "label": "Fenced", "tooltip": "Secure area", "status": "available" },
+            { "emoji": "🗑️", "label": "Trash Bin", "tooltip": "Trash available", "status": "available" }
+            ],
+            "features": "Grassy fenced area, informal, adjacent to city field.",
+            "website": null
+        },
+        {
+            "name": "SkipTown at York Street Yards",
+            "neighborhood": "Clayton / York Street Yards (Denver)",
+            "adjacent": "York Street Yards complex",
+            "description": "High-end indoor-outdoor off-leash dog park with boarding, training, grooming, and bar for owners.",
+            "address": {
+            "text": "3833 Steele St, Denver, CO",
+            "url": "https://maps.google.com/?q=3833+Steele+St,+Denver,+CO"
+            },
+            "hours": "Indoor/outdoor—publicly unspecified hours",
+            "amenities": [
+            { "emoji": "🍸", "label": "Bar", "tooltip": "Full bar for owners", "status": "available" },
+            { "emoji": "🏠", "label": "Indoor/Outdoor", "tooltip": "Mixed environment", "status": "available" },
+            { "emoji": "🛁", "label": "Grooming", "tooltip": "On-site grooming", "status": "available" },
+            { "emoji": "🐕", "label": "Supervised", "tooltip": "Canine behavior monitors", "status": "available" }
+            ],
+            "features": "Opened October 4, 2024; day passes $15, memberships from $380/year; very upscale experience.:contentReference[oaicite:0]{index=0}",
+            "website": null
+        }
+        ];
+
+        renderParks(parkData);
+    
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterParks(e.target.value);
+        });
+    </script>
+</body>
+</html>
