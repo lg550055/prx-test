@@ -35,7 +35,7 @@ a:hover {
 .hor-ad {
   text-align: center;
   margin: 0 auto;
-  border: 1px solid gold;
+  /* border: 1px solid gold; */
 }
 
 .hero {
