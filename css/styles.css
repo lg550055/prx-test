@@ -32,6 +32,10 @@ a {
 a:hover {
   font-weight: bold;
 }
+.hor-ad {
+  margin: 0 auto;
+  border: 1px solid gold;
+}
 
 .hero {
   background: linear-gradient(135deg, var(--bkup-color), var(--color2));
@@ -90,7 +94,7 @@ a:hover {
 }
 
 .cta {
-  background: linear-gradient(135deg, var(--bkup-color), var(--off-black));
+  background: linear-gradient(135deg, var(--bkup-color), var(--color2));
   color: var(--off-white);
   padding: 5rem 2rem;
   text-align: center;
