@@ -33,6 +33,7 @@ a:hover {
   font-weight: bold;
 }
 .hor-ad {
+  text-align: center;
   margin: 0 auto;
   border: 1px solid gold;
 }
