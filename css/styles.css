@@ -20,8 +20,11 @@ h1 {
 }
 h2 {
   font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2vh;
+  margin-bottom: 0.5rem;
+}
+h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
 }
 a {
   text-decoration: none;
@@ -52,27 +55,39 @@ a:hover {
 }
 
 .categories {
-  color: var(--bkup-color);
+  color: var(--color2);
   padding: 6rem 0;
+  text-align: center;
 }
 .cards {
   display: flex;
   gap: var(--grid-gap, 20px);
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 3rem;
+  text-align: left;
 }
 .card {
-  background: var(--white-color, #fff);
+  color: var(--off-white);
+  background: linear-gradient(180deg, var(--color2), var(--bkup-color));
   padding: 30px;
   width: 320px;
   text-decoration: none;
-  color: var(--off-black);
   border-radius: var(--bor-rad, 8px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   transition: transform 0.2s ease;
 }
 .card:hover {
   transform: translateY(-5px);
+}
+.card a {
+  color: var(--off-white);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.city-links {
+  display: none;
+  padding: 1rem;
 }
 
 .cta {
@@ -81,20 +96,17 @@ a:hover {
   padding: 5rem 2rem;
   text-align: center;
 }
-
 .cities {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--grid-gap, 20px);
   padding: 20px;
 }
-
 .cities a {
   color: var(--off-white);
   display: block;
   padding-top: 10px;
 }
-
 .cities h4 {
   border-bottom: 3px solid var(--color1);
   display: inline-block;

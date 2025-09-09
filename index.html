@@ -23,25 +23,34 @@
     </div>
   </section>
 
-  <section id="categories" class="categories container">
+  <section id="categories" class="categories">
     <h2>✨ Popular Categories</h2>
+    <p>Click a category to reveal the link to the city guide</p>
     <div class="cards">
-      <a class="card" href="pages/fun.html">
-        <h4>🐕 Dog parks</h4>
+      <div class="card" data-category="dog-parks">
+        <h3>🐕 Dog parks</h3>
         <p>Your guide to the best off-leash adventures in your city / near you</p>
-      </a>
-      <a class="card" href="pages/practical.html">
-        <h4>🎾 Tennis courts</h4>
+        <div class="city-links">
+          <a href="lax/dog-parks/">🌞 Los Angeles</a>
+          <a href="dfw/dog-parks/">☆ Dallas-Forth Worth</a>
+        </div>
+      </div>
+      <div class="card" data-category="tennis">
+        <h3>🎾 Tennis courts</h3>
         <p>Find the best public tennis courts in your city or near you - sorted by rating</p>
-      </a>
-      <a class="card" href="pages/parks.html">
-        <h4>🏀 Basketball courts</h4>
+        <div class="city-links">
+          <a href="lax/tennis/">🌞 Los Angeles</a>
+          <a href="dfw/tennis/">☆ Dallas-Forth Worth</a>
+        </div>
+      </div>
+      <div class="card" data-category="basketball">
+        <h3>🏀 Basketball courts</h3>
         <p>Locate the best public basketball courts in your city or near you - sorted by rating</p>
-      </a>
-      <a class="card" href="pages/parks.html">
-        <h4>🌳 Parks & Outdoors</h4>
-        <p>Nature trails, city parks, picnic spots with full features listed</p>
-      </a>
+        <div class="city-links">
+          <a href="lax/basketball/">🌞 Los Angeles</a>
+          <a href="dfw/basketball/">☆ Dallas-Forth Worth</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -67,5 +76,21 @@
 
   <!-- Inserts header -->
   <script src="./js/footer.js"></script>
+  <!-- Toggle view of cities under each category -->
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Prevent link clicks from toggling
+        if (e.target.tagName === 'A') return;
+        document.querySelectorAll('.city-links').forEach(links => {
+          if (links !== card.querySelector('.city-links')) {
+            links.style.display = 'none';
+          }
+        });
+        const links = card.querySelector('.city-links');
+        links.style.display = links.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
