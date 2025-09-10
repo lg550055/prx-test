@@ -15,7 +15,7 @@ body {
     margin: 0 auto 5rem;
 }
 .hor-ad {
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   text-align: center;
 }
 
@@ -147,7 +147,7 @@ a:hover {
 .no-results {
     text-align: center;
     color: var(--off-white);
-    margin-bottom: 25vh;
+    margin-bottom: 15vh;
 }
 /* park styles */
 .parks-grid {
