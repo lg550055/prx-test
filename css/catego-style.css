@@ -147,7 +147,7 @@ a:hover {
 .no-results {
     text-align: center;
     color: var(--off-white);
-    margin-bottom: 15vh;
+    margin-bottom: 10vh;
 }
 /* park styles */
 .parks-grid {
