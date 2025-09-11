@@ -74,7 +74,7 @@ function renderCourts(courts) {
  * @param {string} searchTerm - The term to filter courts by
  */
 function filterCourts(searchTerm) {
-    const filtered = courtData.filter(court => 
+    const filtered = data.filter(court => 
         court.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         court.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
         court.address.toLowerCase().includes(searchTerm.toLowerCase()) ||

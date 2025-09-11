@@ -51,7 +51,7 @@
 
     <script src="../../js/courts.js"></script>
     <script>
-        const courtData = [
+        const data = [
             {
                 name: "Santa Monica Tennis Center",
                 rating: 4.8,
@@ -175,9 +175,9 @@
         ];
 
         // Sort courts by rating (highest first)
-        courtData.sort((a, b) => b.rating - a.rating);
+        data.sort((a, b) => b.rating - a.rating);
 
-        renderCourts(courtData);
+        renderCourts(data);
 
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', (e) => {
