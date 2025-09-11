@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="title">
-            <h1>🏀 Los Angeles Public Skateparks</h1>
+            <h1>🛹 Los Angeles Public Skateparks</h1>
             <p>Find the best public skateparks in Los Angeles - sorted by rating</p>
 
             <div class="search-filter">
@@ -51,7 +51,7 @@
 
     <script src="../../js/courts.js"></script>
     <script>
-        const data = [
+        const courtData = [
         {
             "name": "Venice Beach Skatepark",
             "rating": 4.7,
@@ -282,9 +282,9 @@
         ];
 
         // Sort by rating (highest first)
-        data.sort((a, b) => b.rating - a.rating);
+        courtData.sort((a, b) => b.rating - a.rating);
 
-        renderCourts(data);
+        renderCourts(courtData);
 
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', (e) => {
