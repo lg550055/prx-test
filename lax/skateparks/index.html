@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles best public skateparks</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/vars.css" />
+    <link rel="stylesheet" href="../../css/catego-style.css" />
+    <link rel="stylesheet" href="../../css/head-foot-style.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1163083582599963"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Inserts header -->
+    <script src="../../js/header.js"></script>
+
+    <div class="container">
+        <div class="title">
+            <h1>🏀 Los Angeles Public Skateparks</h1>
+            <p>Find the best public skateparks in Los Angeles - sorted by rating</p>
+
+            <div class="search-filter">
+                <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search by name, location, or features...">
+            </div>
+        </div>
+
+        <div class="courts-grid" id="courtsGrid"></div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            No parks match your search criteria. Try a different search term
+        </div>
+    </div>
+
+    <section class="hor-ad">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1163083582599963"
+            crossorigin="anonymous"></script>
+        <!-- Multip Resp -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-1163083582599963"
+            data-ad-slot="3821545418"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+    <!-- Inserts footer -->
+    <script src="../../js/footer.js"></script>
+
+    <script src="../../js/courts.js"></script>
+    <script>
+        const data = [
+        {
+            "name": "Venice Beach Skatepark",
+            "rating": 4.7,
+            "address": "1800 Ocean Front Walk, Venice, CA 90291",
+            "location": "Venice Beach",
+            "features": ["Iconic beachfront bowl", "Street course", "Open plaza", "Multiple obstacles"],
+            "description": "Famous beachfront skatepark with varied terrain and a vibrant local skate scene.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Charmette Bonpua Skate Plaza",
+            "rating": 4.3,
+            "address": "830 Lucille Ave, Los Angeles, CA 90026",
+            "location": "Historic Filipinotown",
+            "features": ["Street plaza", "Rails", "Stairs", "Banks"],
+            "description": "Street-style plaza ideal for beginner to advanced skaters, with lots of rails and ledges.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Stoner Skate Plaza",
+            "rating": 4.5,
+            "address": "1835 Stoner Ave, Los Angeles, CA 90025",
+            "location": "Sawtelle/West LA",
+            "features": ["Concrete plaza", "Rails", "Ledges", "Supportive community"],
+            "description": "Popular skate plaza in West LA with varied obstacles and a busy skate scene.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Garvanza Skatepark",
+            "rating": 4.4,
+            "address": "6240 N. Figueroa St, Los Angeles, CA 90042",
+            "location": "Highland Park",
+            "features": ["Backyard-style bowl", "Street section", "Plaza design"],
+            "description": "Hardcore skatepark with a renowned bowl and street plaza; popular with advanced skaters.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Echo Park Skatepark",
+            "rating": 4.3,
+            "address": "1632 Temple St, Los Angeles, CA 90026",
+            "location": "Echo Park",
+            "features": ["Concrete street plaza", "Rails", "Banks"],
+            "description": "Small but lively plaza-style skatepark, convenient to Downtown and Echo Park neighborhood.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Hazard Park Skate Plaza",
+            "rating": 4.2,
+            "address": "2230 Norfolk St, Los Angeles, CA 90033",
+            "location": "Northeast LA",
+            "features": ["Street course", "Banks", "Rails"],
+            "description": "Street plaza located within Hazard Park; good for technical street tricks.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Lake Street Skatepark",
+            "rating": 4.3,
+            "address": "227 N Lake St, Los Angeles, CA 90026",
+            "location": "Westlake",
+            "features": ["Concrete features", "Open street course", "Banks"],
+            "description": "Neighborhood skatepark with essential street features for all levels.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Ambassador Skate Plaza (Wilmington Skatepark)",
+            "rating": 4.3,
+            "address": "450 E. Lomita Blvd, Wilmington, CA 90744",
+            "location": "Wilmington",
+            "features": ["Street plaza", "Rails", "Banks"],
+            "description": "Concrete plaza with technical features, popular with locals.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "The Cove Skatepark",
+            "rating": 4.6,
+            "address": "1401 Olympic Blvd, Santa Monica, CA 90404",
+            "location": "Santa Monica",
+            "features": ["Ramps", "Bowls", "Over-vert pool", "Tile coping"],
+            "description": "Legendary park with challenging bowls, pools, and ramps; registration/fee required.",
+            "cost": "Fee required",
+            "category": "public / paid"
+        },
+        {
+            "name": "Culver City Skatepark",
+            "rating": 4.4,
+            "address": "9910 Jefferson Blvd, Culver City, CA 90232",
+            "location": "Culver City",
+            "features": ["Bowls", "Banks", "Street features"],
+            "description": "Suburban destination skatepark with varied terrain for tricks and lines.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Venice High School Skatepark",
+            "rating": 4.2,
+            "address": "13000 Venice Blvd, Los Angeles, CA 90066",
+            "location": "Mar Vista",
+            "features": ["Street obstacles", "Flat bars"],
+            "description": "School-based plaza with open layout and street obstacles.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Roosevelt Skatepark",
+            "rating": 4.2,
+            "address": "7600 Graham Ave, Los Angeles, CA 90001",
+            "location": "Florence-Graham",
+            "features": ["Street course", "Banks", "Flat open area"],
+            "description": "Likely busy community skatepark for beginners and intermediates.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Jackie Tatum Skate Plaza",
+            "rating": 4.3,
+            "address": "7001 S Hoover St, Los Angeles, CA 90044",
+            "location": "South Los Angeles",
+            "features": ["Rails", "Ledges", "Street plaza"],
+            "description": "Neighborhood skate spot with street elements and moderate difficulty.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Stoner Park Skate Plaza",
+            "rating": 4.5,
+            "address": "1835 Stoner Ave, Los Angeles, CA 90025",
+            "location": "West LA",
+            "features": ["Rails", "Ledges", "Street features"],
+            "description": "Clean park with friendly locals and a classic street plaza layout.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "North Hollywood Skate Plaza",
+            "rating": 4.5,
+            "address": "11430 Chandler Blvd, North Hollywood, CA 91601",
+            "location": "North Hollywood Arts District",
+            "features": ["Rails", "Ledges", "Street features", "Open plaza"],
+            "description": "Popular plaza with rails and technical street terrain for all ages.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Hansen Dam Skatepark",
+            "rating": 4.5,
+            "address": "11798 Foothill Blvd, Lake View Terrace, CA 91342",
+            "location": "Lake View Terrace",
+            "features": ["Capsule bowl", "Mini-ramp", "Street plaza loop"],
+            "description": "Newly built park with advanced bowl features and street section, great flow for lines.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Belvedere Skatepark",
+            "rating": 4.5,
+            "address": "4914 E Cesar E Chavez Ave, Los Angeles, CA 90022",
+            "location": "East Los Angeles",
+            "features": ["Tall ramps", "Pools", "Waterfalls", "Multiple levels"],
+            "description": "Spacious skatepark with two pools, tall ramps, and street course. Good for all levels.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "George Lane Skatepark",
+            "rating": 4.4,
+            "address": "5520 W Ave L8, Quartz Hill, CA 93536",
+            "location": "Quartz Hill / North LA County",
+            "features": ["Flow bowl", "Snake run", "Street plaza"],
+            "description": "Large and modern park with multiple bowls, street plaza, and good transitions.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Gibson Mariposa Skatepark",
+            "rating": 4.4,
+            "address": "12327 Elliott Ave, El Monte, CA 91732",
+            "location": "El Monte",
+            "features": ["Butterfly-shaped bowl", "Street plaza", "Unique features"],
+            "description": "Medium-sized park with a unique bowl design and street plaza; opened in 2020.",
+            "cost": "Free",
+            "category": "public"
+        },
+        {
+            "name": "Harbor City Skatepark",
+            "rating": 4.3,
+            "address": "1400 253rd St, Harbor City, CA 90710",
+            "location": "Harbor City",
+            "features": ["Street plaza", "Bowl section", "Open layout"],
+            "description": "Modern skatepark with bowl and street plaza features; opened in 2019.",
+            "cost": "Free",
+            "category": "public"
+        }
+        ];
+
+        // Sort by rating (highest first)
+        data.sort((a, b) => b.rating - a.rating);
+
+        renderCourts(data);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterCourts(e.target.value);
+        });
+    </script>
+</body>
+</html>
